@@ -17,5 +17,7 @@ char *_strcpy1(char *dest, char *src, int flag);
 char *_strcat(char *dest, const char *src);
 char **split_line(char *line, char *delimiter);
 char *_which(char *filename);
+char *_strstr(char *haystack, char *needle);
+char *_strdup(char *str);
 
 #endif
