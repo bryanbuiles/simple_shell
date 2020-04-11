@@ -4,21 +4,21 @@
  *
  * Return: Always 0.
  */
-//int main(int c, char *v[], char **env)
-int main(void)
+int main(int c, char *v[], char **env)
 {
 	size_t bufersize = 0;
 	int status, len, flag = 1, bytes;
 	pid_t pid;
 	char *buffer = NULL, **args;
+	int check;
 	//char **env = {NULL};
 
 	do
 	{
 		/* isatty helps us with interactive and non inte. mode */
 		/* tests whether fd is an open file descriptor referring to a terminal. */
-		// if isatty return 1 is open from the terminal --> ./shell 
-		// if issaty return 0 was using pipe line ---> echo "/bin/ls" | ./shell 
+		// if isatty return 1 is open from the terminal --> ./shell
+		// if issaty return 0 was using pipe line ---> echo "/bin/ls" | ./shell
 		if (isatty(STDIN_FILENO))
 			write(1, "$ ", 3);
 
@@ -32,12 +32,12 @@ int main(void)
 			free(buffer);
 			exit(0);
 		}
-		
+
 		len = _strlen(buffer);
 		if (buffer[len - 1] == '\n')
 			buffer[len - 1] = 0;
 
-		// fork will start a new child proccess 
+		// fork will start a new child proccess
 		if ((pid = fork()) == -1)
 		{
 			perror("Error:");
@@ -47,8 +47,8 @@ int main(void)
 		// if pid == -0 will be the child
 		if (pid == 0)
 		{
-			// split_line will make tokens delim. for space 
-			// return a double pointer, of tokens 
+			// split_line will make tokens delim. for space
+			// return a double pointer, of tokens
 			// we need to free just the big pointer -> free(args)
 			args = split_line(buffer, " ");
 			if (args == NULL)
@@ -56,27 +56,34 @@ int main(void)
 				free(buffer);
 				return (1);
 			}
-
-			//_which will look for files in the current PATH.
-			// which return a single pointer -> will be the path ej:(/bin/ls)
-			//we need to free the single pointer --> free(args[0]
-			args[0] = _which(args[0]);
-			if (args[0] == NULL)
+			check = ver_builtins(args[0]);
+			if (check == 1)
 			{
-				free(args);
-				free(buffer);
-				return (1);
+				apply_builtins(args, buffer);
 			}
-			if (execve(args[0], args, NULL) == -1)
+			if (check == 2)
 			{
-				//write(1, "./shell: ", 8);
-				free(args[0]);
-				free(args);
-				free(buffer);
-				return (1);
-			}
-			/* despues de execve nada funciona */
+				//_which will look for files in the current PATH.
+				// which return a single pointer -> will be the path ej:(/bin/ls)
+				//we need to free the single pointer --> free(args[0]
+				args[0] = _which(args[0]);
+				if (args[0] == NULL)
+				{
+					free(args);
+					free(buffer);
+					return (1);
+				}
 
+				if (execve(args[0], args, NULL) == -1)
+				{
+					//write(1, "./shell: ", 8);
+					free(args[0]);
+					free(args);
+					free(buffer);
+					return (1);
+				}
+				/* despues de execve nada funciona */
+			}
 		}
 		//will be the parent proccess
 		else
@@ -89,12 +96,12 @@ int main(void)
 		// free(buffer);
 	} while (flag);
 
-	/* if (!c)
+	if (!c)
 		(void)c;
 	if (v == NULL)
 		(void)v;
 	if (env == NULL)
-		(void)env; */
+		(void)env;
 	free(buffer);
 	return (0);
 }
