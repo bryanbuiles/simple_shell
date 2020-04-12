@@ -4,13 +4,9 @@ The simple shell is a command-line interpreter or shell that provides a command 
 
 ## Description:
 
----
-
 We create our own simple UNIX command interpreter. The program has the same output as /bin/sh as well as the exact same error output. The only difference is when you print an error, the name of the program must be equivalent to your argv[0].
 
 ## Instructions:
-
----
 
 ### How to dowloaded
 
@@ -40,7 +36,6 @@ In interactive mode:
       ($) ls
       functions.c README.md shell.c
       _getenv.c shell shell.h _which
-      ($)
       ($) exit
      $
 
@@ -52,6 +47,10 @@ Non-interactive mode:
      $
 
 You can open a man page and get more information about it.
+
+     user@ubuntu:~/c/printf$ **man ./man_1_simple_shell**
+
+### Blog:
 
 ## Files:
 
@@ -68,4 +67,4 @@ You can open a man page and get more information about it.
 | Authors                 | Email                    |
 | ----------------------- | ------------------------ |
 | Bryan Builes Echavarria | 1482@holbertonschool.com |
-| Erika osorio Guerrero   | 1476@holbertonschool.com |
+| Erika Osorio Guerrero   | 1476@holbertonschool.com |
