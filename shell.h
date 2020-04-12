@@ -19,5 +19,7 @@ char **split_line(char *line, char *delimiter);
 char *_which(char *filename);
 char *_strstr(char *haystack, char *needle);
 char *_strdup(char *str);
+void errorMj(char *message[], int count);
+int _putchar(char c);
 
 #endif

@@ -13,8 +13,8 @@ extern char **environ;
 
 char *_getenv(const char *name)
 {
-        int i, size;
-        char *nameVar, *token, *pathvalue;
+        int i;
+        char *nameVar, *pathvalue;
         for(i = 0; environ[i]; i++)
         {
          /* copy the string in order to use strtok so the original doesn't change*/

@@ -23,12 +23,16 @@ char *_strcat(char *dest, const char *src)
     {
         i++;
         j++;
-    }
+    }  
+    dest[i] = '\0'; 
+
     return (dest);
 }
 
 char *_strcpy1(char *dest, char *src, int flag)
 {
+    // flag = 1 will add a slash at the end of the string
+    // flag 2 will add a colon and a space at the end
     int i;
 
     for (i = 0; src[i]; i++)
@@ -38,6 +42,12 @@ char *_strcpy1(char *dest, char *src, int flag)
     if (flag == 1)
     {
         dest[i] = '/';
+        i++;
+    }
+    else if (flag == 2)
+    {
+        dest[i] = ':';
+        dest[++i] = ' ';
         i++;
     }
     dest[i] = '\0';
@@ -111,3 +121,48 @@ char *_strdup(char *str)
 	s[i] = 0;
 	return (s);
 }
+
+void errorMj(char *message[], int count)
+{
+    // message[0] = ./a.out
+    // message[1] = lslsls
+
+        int size1 = 0, size2 = 0;
+        char *aux = ": not found\n";
+        char *str1, *str2;
+        
+		size1 = _strlen(message[0]) + 1; 
+        str1 = malloc(sizeof(char) * size1);
+		if (str1 == NULL)
+		{
+            exit(0);
+		}
+		str1 = _strcpy1(str1, message[0], 0);
+
+
+		size2 = _strlen(message[1]) + _strlen(aux) + 1;
+        str2 = malloc(sizeof(char) * size2);
+        if (str2 == NULL)
+        {
+            exit(0);
+
+        }
+        str2 = _strcpy1(str2, message[1], 0);
+        str2 = strcat(str2, aux);
+
+		write(STDOUT_FILENO, str1, size1);
+        write(1, ": ", 3);
+        _putchar(count + '0');
+        write(1, ": ", 3);
+        write(STDOUT_FILENO, str2, size2);
+		free(str1);
+        free(str2);
+}
+
+
+int _putchar(char c)
+{
+    write(1, &c, 1);
+    return (0); 
+}
+

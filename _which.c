@@ -8,10 +8,10 @@
 char *_which(char *filename)
 {
     struct stat st;
-    int size = 0, flag = 0;
+    int size = 0;
     char *newpointer, *newpath, *token, *fullpath;
 
-    if (filename == "")
+    if (filename == NULL)
         return (NULL);
 
     /* fullpath ist the value of var PATH */
