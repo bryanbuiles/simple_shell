@@ -10,6 +10,12 @@
 #include <fcntl.h>
 #include <string.h>
 
+typedef struct builtins
+{
+    char *arg;
+    void (*f)(char **args, char *line);
+} builtins_t;
+
 void shell(int c, char *v[], char **env);
 char *_getenv(const char *name);
 int _strlen(const char *str);
@@ -19,7 +25,11 @@ char **split_line(char *line, char *delimiter);
 char *_which(char *filename);
 char *_strstr(char *haystack, char *needle);
 char *_strdup(char *str);
-void errorMj(char *message[], int count);
+int errorMj(char *message[], int count);
 int _putchar(char c);
 
+void shellexit(char **args, char *line);
+int ver_builtins(char *args);
+int apply_builtins(char **args, char *line);
+void envshell(char **args, char *line);
 #endif

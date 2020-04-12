@@ -17,12 +17,12 @@ char *_which(char *filename)
     /* fullpath ist the value of var PATH */
     fullpath = _getenv("PATH");
 
-  /*newpath will be the copy of PATH value */
+    /*newpath will be the copy of PATH value */
     newpath = _strdup(fullpath);
 
     /*token will be each directory of path */
     token = strtok(newpath, ":");
-    
+
     while (token)
     {
         token = strtok(NULL, ":");
@@ -42,8 +42,8 @@ char *_which(char *filename)
         }
         else
         {
-        //else if filename doesn't start with slash (/) 
-        /*plus 2 is the null byte and the slash (/)*/
+            //else if filename doesn't start with slash (/)
+            /*plus 2 is the null byte and the slash (/)*/
             size = _strlen(token) + _strlen(filename) + 2;
             newpointer = malloc(sizeof(char *) * size);
             if (newpointer == NULL)
@@ -60,7 +60,7 @@ char *_which(char *filename)
         if (stat(newpointer, &st) == 0)
         {
             free(newpath);
-         /* newpointer will contain a string ej: /bin/ls 
+            /* newpointer will contain a string ej: /bin/ls 
             and needs to free(newpointer) sometime in the function who call it */
             return (newpointer);
         }
@@ -78,7 +78,7 @@ char *_which(char *filename)
 //     ptr = _which("a");
 //     //ptr = _which("/bin/ls");
 //     if (ptr == NULL)
-//         return (1); 
+//         return (1);
 //     printf("%s\n", ptr);
 
 //     free(ptr);

@@ -122,7 +122,7 @@ char *_strdup(char *str)
 	return (s);
 }
 
-void errorMj(char *message[], int count)
+int errorMj(char *message[], int count)
 {
     // message[0] = ./a.out
     // message[1] = lslsls
@@ -157,6 +157,7 @@ void errorMj(char *message[], int count)
         write(STDOUT_FILENO, str2, size2);
 		free(str1);
         free(str2);
+        return (0);
 }
 
 
