@@ -38,7 +38,7 @@ int main(int ac, char *av[], char **env)
 		{
 			if (isatty(STDIN_FILENO))
 				write(1, "\n", 1);
-			free(buffer);
+			//free(buffer);
 			exit(0);
 		}
 		len = _strlen(buffer);
@@ -53,15 +53,13 @@ int main(int ac, char *av[], char **env)
 			// split_line will make tokens delim. for space
 			// return a double pointer, of tokens
 			// we need to free just the big pointer -> free(args)
-			args = split_line(buffer, " ");
+			args = split_line(buffer, " \t");
 
 			/* for (count = 0; count < 63; count++)
 				printf(">>>>args[%i] = [%s]\n", count, args[count]); */
 			if (args[0] == NULL)
 			{
-
 				free(args);
-				free(buffer);
 			}
 			else
 			{
@@ -130,6 +128,5 @@ int main(int ac, char *av[], char **env)
 		(void)av;
 	if (env == NULL)
 		(void)env;
-	free(buffer);
 	return (0);
 }
