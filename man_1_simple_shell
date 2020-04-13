@@ -16,12 +16,12 @@ This is a simple UNIX command interpreter. The program has the same output as /b
 The simple shell is an excutable that reads commands from prompt, interprets and execute them, and also execute some built-in.
 
 .SS Path search
-When locating a command, The shell first looks to see it has a builtin command by that name.If the builtin function don't exist then it looks if exist a coincidence in the PATH of env by that name. Then append the command from prompt to PATh directory and return the entire Path.
+When locating a command, The shell first looks to see if it has a builtin command by that name.If the builtin function don't exist then it looks if exist a coincidence in the PATH of enviroment variable (env) by that name. Then append the command from prompt to PATH directory and return the entire Path.
 
 .SS Running the program
-It runs by compiling all .c files from own repository to create a executable called shell.
+It runs by compiling all .c files the repository simple_shell to create an executable called shell.
 .SS
-EXAMPLE:
+EXAMPLE OF COMPILATION:
 gcc -Wall -Werror -Wextra -pedantic *.c -o shell
 
 .SH MODES
@@ -33,13 +33,13 @@ EXAMPLE:
 .br
 $ ./shell
 .br
- ($) ls
+ myShell $ ls
 .br
  functions.c README.md shell.c
 .br
  _getenv.c shell shell.h _which
 .br
- ($) exit
+ myShell $ exit
 .br
 $
 .br

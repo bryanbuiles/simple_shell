@@ -159,6 +159,13 @@ int errorMj(char *message[], int count)
         free(str2);
         return (0);
 }
+/**
+  * _putchar - writes the character c to stdout
+  * @c: The character to print
+  *
+  * Return: On success 1.
+  * On error, -1 is returned, and errno is set appropriately.
+  */
 
 
 int _putchar(char c)
@@ -167,3 +174,24 @@ int _putchar(char c)
     return (0); 
 }
 
+/**
+ * _strcmp - Compares two strings
+ * @s1: First string to be compare
+ * @s2: Second srting to be compare
+ *Return: the difference bettwen those teo letters
+ */
+int _strcmp(char *s1, char *s2)
+{
+	int i;
+	int result = 0;
+
+	for (i = 0; s1[i] != 0 || s2[i] != 0; i++)
+	{
+		if (!(s1[i] == s2[i]))
+		{
+			result = s1[i] - s2[i];
+			break;
+		}
+	}
+	return (result);
+}

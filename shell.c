@@ -7,7 +7,7 @@
 int main(int ac, char *av[], char **env)
 {
 	size_t bufersize = 0;
-	int status, len, flag = 1, bytes, count = 0;
+	int status, len, flag = 1, bytes, count = 0, check;
 	pid_t pid;
 	char *buffer = NULL, **args, *pathname;
 	//char **env;// = {NULL};
@@ -21,7 +21,7 @@ int main(int ac, char *av[], char **env)
 		if (isatty(STDIN_FILENO))
 		{
 			count++;
-			write(1, "$ ", 3);
+			write(1, "GreatTeam $ ", 13);
         	}
 		else
 		{
@@ -39,7 +39,6 @@ int main(int ac, char *av[], char **env)
 			free(buffer);
 			exit(0);
 		}
-
 		len = _strlen(buffer);
 		if (buffer[len - 1] == '\n')
 			buffer[len - 1] = '\0';
@@ -47,75 +46,72 @@ int main(int ac, char *av[], char **env)
 		// split_line will make tokens delim. for space 
 		// return a double pointer, of tokens 
 		// we need to free just the big pointer -> free(args)
+
 		args = split_line(buffer, " ");
 		if (args == NULL)
 		{
-			free(buffer);
-			return (1);
-		}
-		char *message[] = {av[0], args[0], NULL};
-		// if (strcmp(args[0], "exit") == 0)
-		// {
-		// 	free(args);
-		// 	free(buffer);
-		// 	break;
-		// }
-
-		// check = ver_builtins(args[0]);
-		// if (check == 1)
-		// {
-		// 		apply_builtins(args, buffer);
-		// }
-		// else
-		// {
-		// 	// if (check == 2)
-		// 	// entre a which
-			
-		// }
-		// fork will start a new child proccess
-		if ((pid = fork()) == -1)
-		{
-			perror("Error:");
 			free(args);
 			free(buffer);
-			return (1);
 		}
-		// if pid == -0 will be the child
-		if (pid == 0)
+		char *message[] = {av[0], args[0], NULL};
+
+		if (_strcmp(args[0], "exit") == 0)
 		{
-			//_which will look for files in the current PATH.
-			// which return a single pointer -> will be the path ej:(/bin/ls)
-			//we need to free the single pointer --> free(pathname)
-			pathname = _which(args[0]); 
-			if (pathname == NULL)
-			{
-				/* this is for printing and error messages */
-				errorMj(message, count);
-				free(pathname);
-				free(args);
-				free(buffer);
-				return (1);
-			}
-			if (execve(pathname, args, env) == -1)
-			{
-				//write(1, "./shell: ", 8);
-				free(pathname);
-				free(args);
-				free(buffer);
-				return (1);
-			}
-			/* despues de execve nada funciona */
-			
+			free(args);
+			free(buffer);
+			exit(0);
 		}
-		//will be the parent proccess
+		check = apply_builtins(args, buffer);
+		if (check == 0)
+		{
+			printf("Entro a la estructura ---------\n");
+			free(args);
+			free(buffer);
+		}
 		else
 		{
-			waitpid(pid, &status, 0);
+		// fork will start a new child proccess
+			if ((pid = fork()) == -1)
+			{
+				perror("Error:");
+				free(args);
+				free(buffer);
+				return (1);
+			}
+			// if pid == -0 will be the child
+			if (pid == 0)
+			{
+				//_which will look for files in the current PATH.
+				// which return a single pointer -> will be the path ej:(/bin/ls)
+				//we need to free the single pointer --> free(pathname)
+				pathname = _which(args[0]);
+				if (pathname == NULL)
+				{
+					/* this is for printing and error messages */
+					errorMj(message, count);
+					free(args);
+					free(buffer);
+					exit (127);
+				}
+				if (execve(pathname, args, env) == -1)
+				{
+					//write(1, "./shell: ", 8);
+					free(pathname);
+					free(args);
+					free(buffer);
+					return (1);
+				}
+				/* despues de execve nada funciona */
+				
+			}
+			//will be the parent proccess
+			else
+			{
+				waitpid(pid, &status, 0);
+			}
+			//need to figure what happen when we do not use this free
+			free(args);
 		}
-		//need to figure what happen when we do not use this free
-		// free(args[0]);/* proviene del which */
-		// free(args); /* proviene del split line */
-		// free(buffer);
 	} while (flag);
 
 	 if (!ac)
