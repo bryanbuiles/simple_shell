@@ -1,4 +1,4 @@
-# Simple SHell
+# Simple Shell
 
 The simple shell is a command-line interpreter or shell that provides a command line user interface for Unix-like operating systems.
 
@@ -54,13 +54,15 @@ You can open a man page and get more information about it.
 
 ## Files:
 
-| File        | Description       |
-| ----------- | ----------------- |
-| shell.c     | Execute the shell |
-| shell.h     | Header            |
-| functions.c | Helper functions  |
-| \_which.c   | Find PATH         |
-| \_getenv.c  | Find env variable |
+| File               | Description        |
+| ------------------ | ------------------ |
+| shell.c            | Execute the shell  |
+| shell.h            | Header             |
+| functions.c        | Helper functions   |
+| \_which.c          | Find PATH          |
+| \_getenv.c         | Find env variable  |
+| builtins.c         | Builtins functions |
+| helper_functions.c | Helper functions2  |
 
 ## Authors:
 

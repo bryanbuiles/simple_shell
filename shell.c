@@ -1,7 +1,9 @@
 #include "shell.h"
 /**
- * main - execve example
- *
+ * main - This is a simple UNIX command interpreter
+ * @ac:  The number of strings pointed to by av
+ * @av: argument vector or array of arguments
+ * @env: enviroment list
  * Return: Always 0.
  */
 int main(int ac, char *av[], char **env)
@@ -21,7 +23,7 @@ int main(int ac, char *av[], char **env)
 		{
 			count++;
 			write(1, "GreatTeam $ ", 13);
-        	}
+		}
 		else
 		{
 			//helps us counting a line in none interactive mode
@@ -41,93 +43,92 @@ int main(int ac, char *av[], char **env)
 		len = _strlen(buffer);
 		if (buffer[len - 1] == '\n')
 			buffer[len - 1] = '\0';
-		
+
 		if (*buffer == '\0')
 		{
-			printf("hey");//free(buffer);
 		}
 		else
 		{
-			// split_line will make tokens delim. for space 
-			// return a double pointer, of tokens 
+			// split_line will make tokens delim. for space
+			// return a double pointer, of tokens
 			// we need to free just the big pointer -> free(args)
-
 			args = split_line(buffer, " ");
-			if (args == NULL)
-			{
-				free(args);
-				free(buffer);
-			}
-			char *message[] = {av[0], args[0], NULL};
 
-			if (_strcmp(args[0], "exit") == 0)
+			/* for (count = 0; count < 63; count++)
+				printf(">>>>args[%i] = [%s]\n", count, args[count]); */
+			if (args[0] == NULL)
 			{
-				free(args);
-				free(buffer);
-				exit(0);
-			}
-			check = apply_builtins(args, buffer);
-			if (check == 0)
-			{
-				printf("Entro a la estructura ---------\n");
+
 				free(args);
 				free(buffer);
 			}
 			else
 			{
-			// fork will start a new child proccess
-				if ((pid = fork()) == -1)
+				char *message[] = {av[0], args[0], NULL};
+
+				if (_strcmp(args[0], "exit") == 0)
 				{
-					perror("Error:");
 					free(args);
 					free(buffer);
-					return (1);
+					exit(0);
 				}
-				// if pid == -0 will be the child
-				if (pid == 0)
+				check = apply_builtins(args, buffer);
+				if (check == 0)
+					free(args);
+				else
 				{
-					//_which will look for files in the current PATH.
-					// which return a single pointer -> will be the path ej:(/bin/ls)
-					//we need to free the single pointer --> free(pathname)
-					pathname = _which(args[0]);
-					if (pathname == NULL)
+					// fork will start a new child proccess
+					if ((pid = fork()) == -1)
 					{
-						/* this is for printing and error messages */
-						errorMj(message, count);
-						free(args);
-						free(buffer);
-						exit (127);
-					}
-					if (execve(pathname, args, env) == -1)
-					{
-						//write(1, "./shell: ", 8);
-						free(pathname);
+						perror("Error:");
 						free(args);
 						free(buffer);
 						return (1);
 					}
-					/* despues de execve nada funciona */
-					
+					// if pid == -0 will be the child
+					if (pid == 0)
+					{
+						//_which will look for files in the current PATH.
+						// which return a single pointer -> will be the path ej:(/bin/ls)
+						//we need to free the single pointer --> free(pathname)
+						pathname = _which(args[0]);
+						if (pathname == NULL)
+						{
+							/* this is for printing and error messages */
+							errorMj(message, count);
+							free(args);
+							free(buffer);
+							exit(127);
+						}
+						if (execve(pathname, args, env) == -1)
+						{
+							//write(1, "./shell: ", 8);
+							free(pathname);
+							free(args);
+							free(buffer);
+							return (1);
+						}
+						/* despues de execve nada funciona */
+					}
+					//will be the parent proccess
+					else
+					{
+						waitpid(pid, &status, 0);
+					}
+					//need to figure what happen when we do not use this free
+					free(args);
 				}
-				//will be the parent proccess
-				else
-				{
-					waitpid(pid, &status, 0);
-				}
-				//need to figure what happen when we do not use this free
-				free(args);
 			}
 		}
 
+	} while (flag);
 
-	}while (flag);
-
-	 if (!ac)
+	if (!ac)
 		(void)ac;
 	if (av == NULL)
 		(void)av;
 	if (env == NULL)
 		(void)env;
-	free(buffer); 
+	free(buffer);
 	return (0);
 }

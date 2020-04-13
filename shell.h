@@ -10,12 +10,19 @@
 #include <fcntl.h>
 #include <string.h>
 
+/**
+ * struct builtins - struct tha search for the builtin
+ * @arg: Builtin name
+ * @f: pointer to functions.
+ */
+
 typedef struct builtins
 {
-    char *arg;
-    void (*f)(char **args, char *line);
+	char *arg;
+	void (*f)(char **args, char *line);
 } builtins_t;
 
+extern char **environ;
 void shell(int c, char *v[], char **env);
 char *_getenv(const char *name);
 int _strlen(const char *str);
