@@ -195,3 +195,8 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (result);
 }
+
+void ignore_signal(int signal __attribute__((unused)))
+{
+        write(STDOUT_FILENO, "\nGreatTeam $ ", 14);
+}

@@ -17,6 +17,7 @@ int main(int ac, char *av[], char **env)
 		/* tests whether fd is an open file descriptor referring to a terminal. */
 		// if isatty return 1 is open from the terminal --> ./shell
 		// if issaty return 0 was using pipe line ---> echo "/bin/ls" | ./shell
+		signal(SIGINT, ignore_signal);
 		if (isatty(STDIN_FILENO))
 		{
 			count++;
@@ -120,7 +121,7 @@ int main(int ac, char *av[], char **env)
 		}
 
 
-	}while (flag);
+	} while (flag);
 
 	 if (!ac)
 		(void)ac;
