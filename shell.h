@@ -30,7 +30,6 @@ int _putchar(char c);
 int _strcmp(char *s1, char *s2);
 
 void shellexit(char **args, char *line);
-int ver_builtins(char *args);
 int apply_builtins(char **args, char *line);
 void envshell(char **args, char *line);
 #endif
