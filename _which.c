@@ -11,8 +11,7 @@ char *_which(char *filename)
 
 	if (filename == NULL)
 		return (NULL);
-	fullpath = _getenv("PATH");
-	newpath = _strdup(fullpath);
+	fullpath = _getenv("PATH"), newpath = _strdup(fullpath);
 	token = strtok(newpath, ":");
 	while (token)
 	{
@@ -26,8 +25,7 @@ char *_which(char *filename)
 			{
 				free(newpath);
 				return (NULL);
-			}
-			newpoin = _strcpy1(newpoin, filename, 0);
+			} newpoin = _strcpy1(newpoin, filename, 0);
 		}
 		else
 		{
@@ -37,17 +35,13 @@ char *_which(char *filename)
 				free(newpath);
 				return (NULL);
 			}
-			newpoin = _strcpy1(newpoin, token, 1);
-			newpoin = _strcat(newpoin, filename);
+			newpoin = _strcpy1(newpoin, token, 1), newpoin = _strcat(newpoin, filename);
 		}
 		if (stat(newpoin, &st) == 0)
 		{
 			free(newpath);
 			return (newpoin);
-		}
-		else
-			free(newpoin);
-	}
-	free(newpath);
+		} free(newpoin);
+	} free(newpath);
 	return (NULL);
 }
