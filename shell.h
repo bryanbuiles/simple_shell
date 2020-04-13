@@ -39,4 +39,5 @@ int _strcmp(char *s1, char *s2);
 void shellexit(char **args, char *line);
 int apply_builtins(char **args, char *line);
 void envshell(char **args, char *line);
+void ignore_signal(int signal __attribute__((unused)));
 #endif

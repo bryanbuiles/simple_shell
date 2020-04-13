@@ -18,14 +18,12 @@ char **split_line(char *line, char *delimiter)
 		return (NULL);
 	}
 	token = strtok(line, delimiter);
-	printf("^^^^%s\n", token);
 	for (i = 0; token; i++)
 	{
 		alltokens[i] = token;
 		token = strtok(NULL, delimiter);
 	}
 	alltokens[i] = NULL;
-	printf("alltokens: %s\n", alltokens[0]);
 	return (alltokens);
 }
 /**
@@ -96,4 +94,8 @@ int _strcmp(char *s1, char *s2)
 		}
 	}
 	return (result);
+}
+void ignore_signal(int signal __attribute__((unused)))
+{
+	write(STDOUT_FILENO, "\nGreatTeam $ ", 14);
 }
