@@ -9,6 +9,9 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <limits.h>
+
+#define PATH_MAX    4096
 
 /**
  * struct builtins - struct tha search for the builtin
