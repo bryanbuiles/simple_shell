@@ -113,6 +113,8 @@ int main(int ac, char *av[], char **env)
 					else
 					{
 						waitpid(pid, &status, 0);
+						// ret = 7
+						// return (ret);
 					}
 					//need to figure what happen when we do not use this free
 					free(args);
