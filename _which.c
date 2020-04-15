@@ -7,8 +7,7 @@
 char *_which(char *filename)
 {
 	struct stat st;
-	char *newpoin, *newpath, *token, *fullpath, *ptrPATH, *current;
-	int sizecurrent;
+	char *newpoin, *newpath, *token, *fullpath, *ptrPATH;
 
 	ptrPATH = "PATH";
 	if (filename == NULL)

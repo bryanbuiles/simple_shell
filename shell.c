@@ -8,8 +8,8 @@
  */
 int main(int ac, char *av[], char **env)
 {
-	size_t bufersize = 0;
-	int status, len, flag = 1, bytes, check, count = 0, Ex_Status = 0;
+	int flag = 1, check, count = 0;
+	/*int Ex_Status = 0;*/
 	char *buffer = NULL, **args, *pathname = NULL;
 	str_p buf_count;
 
@@ -18,7 +18,7 @@ int main(int ac, char *av[], char **env)
 	{
 		buf_count = shell_prompt(count);
 		buffer = buf_count.buffer, count = buf_count.count;
-		Ex_Status = 0;
+		/*Ex_Status = 0;*/
 
 		if (*buffer == '\0')
 			free(buffer);
