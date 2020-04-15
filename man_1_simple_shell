@@ -1,0 +1,83 @@
+.\MANPAGE Simple Shell.
+.TH Man Version 1 "16 april 2020" "1.0" "Simple Shell man page"
+
+.SH NAME
+
+.B shell -- command interpreter
+
+.SH SYNOPSIS
+.B ./shell
+
+.SH DESCRIPTION
+
+This is a simple UNIX command interpreter. The program has the same output as /bin/sh as well as the exact same error output. The only difference is when you print an error, the name of the program must be equivalent to your argv[0]. It contains basic features and functions found in other shell programs.
+
+.SS Overview
+The simple shell is an excutable that reads commands from prompt, interprets and execute them, and also execute some built-in.
+
+.SS Path search
+When locating a command, The shell first looks to see if it has a builtin command by that name.If the builtin function don't exist then it looks if exist a coincidence in the PATH of enviroment variable (env) by that name. Then append the command from prompt to PATH directory and return the entire Path.
+
+.SS Running the program
+It runs by compiling all .c files the repository simple_shell to create an executable called shell.
+.SS
+EXAMPLE OF COMPILATION:
+gcc -Wall -Werror -Wextra -pedantic *.c -o shell
+
+.SH MODES
+
+INTERACTIVE MODE
+
+.SS
+EXAMPLE:
+.br
+$ ./shell
+.br
+ myShell $ ls
+.br
+ functions.c README.md shell.c
+.br
+ _getenv.c shell shell.h _which
+.br
+ myShell $ exit
+.br
+$
+.br
+
+NON-INTERACTIVE MODE
+
+.SS
+EXAMPLE:
+.br
+$ echo "ls" | ./shell
+.br
+functions.c README.md shell.c
+.br
+_getenv.c shell shell.h _which
+.br
+$
+.br
+
+.SH BUILT-IN COMMANDS AVALIBLE 
+.B env
+- Prints enviroment
+.br
+.B exit
+- exits the shell
+
+.SH RETURN VALUE
+Always 0.
+
+.SH SEE ALSO INFORMATION IN:
+.I sh(1)
+
+.SH BUGS
+
+No known bugs
+
+.SH AUTHOR
+
+ Bryan Builes Echavarria --- 1482@holbertonschool.com
+.br
+ Erika Osorio Guerrero   --- 1476@holbertonschool.com
+.br 
