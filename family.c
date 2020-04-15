@@ -38,7 +38,11 @@ int family(char **args, char *buffer, char *pathname, char **av, int count)
 	}
 	else
 	{
-		waitpid(pid, &status, 0);
+		do
+
+		{
+			waitpid(pid, &status, WUNTRACED);
+		} while (WIFEXITED(status) == 0 && WIFSIGNALED(status) == 0);
 		/*Ex_Status = WEXITSTATUS(status);*/
 	}
 	free(args);
