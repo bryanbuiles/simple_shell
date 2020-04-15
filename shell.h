@@ -49,7 +49,7 @@ char *_strstr(char *haystack, char *needle);
 char *_strdup(char *str);
 int errorMj(char *message[], int count);
 int _putchar(char c);
-int _strcmp(char *s1, char *s2);
+int _strcmp(char *s1, const char *s2);
 
 void shellexit(char **args, char *line);
 int apply_builtins(char **args, char *line);

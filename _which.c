@@ -17,7 +17,7 @@ char *_which(char *filename)
 	{
 		if (stat(filename, &st) == 0)
 		{
-			filename = strdup(filename);
+			filename = _strdup(filename);
 			return (filename);
 		}
 		else

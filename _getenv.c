@@ -15,7 +15,7 @@ char *_getenv(const char *name)
 		nameVar = _strdup(environ[i]);
 		/*strtok set all the delim into nulls, and return a pointer*/
 		nameVar = strtok(nameVar, "=");
-		if ((strcmp(nameVar, name) == 0))
+		if ((_strcmp(nameVar, name) == 0))
 		{
 			pathvalue = _strstr(environ[i], "=");
 			free(nameVar);
