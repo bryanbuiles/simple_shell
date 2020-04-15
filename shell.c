@@ -32,7 +32,7 @@ int main(int ac, char *av[], char **env)
 				if (_strcmp(args[0], "exit") == 0)
 				{
 					fredom(args, buffer, pathname, 0);
-					exit(0);
+					exit(2);
 				}
 				check = apply_builtins(args, buffer);
 				if (check == 0)
