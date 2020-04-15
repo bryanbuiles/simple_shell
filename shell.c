@@ -21,8 +21,7 @@ int main(int ac, char *av[], char **env)
 		Ex_Status = 0;
 
 		if (*buffer == '\0')
-		{
-		}
+			free(buffer);
 		else
 		{
 			args = split_line(buffer, " \t");
