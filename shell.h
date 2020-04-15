@@ -13,9 +13,8 @@
 
 #define PATH_MAX 4096
 
-
 /**
- * struct builtins - struct tha search for the builtin
+ * struct builtins - struct that search for the builtin
  * @arg: Builtin name
  * @f: pointer to functions.
  */
@@ -25,6 +24,12 @@ typedef struct builtins
 	char *arg;
 	void (*f)(char **args, char *line);
 } builtins_t;
+
+/**
+ * struct prompt - struct that bring buffer and count to shell
+ * @buffer: It's the pointer from getline function from stdin
+ * @count: The counter for every shell prompt display
+ */
 
 typedef struct prompt
 {
@@ -44,7 +49,7 @@ char *_strstr(char *haystack, char *needle);
 char *_strdup(char *str);
 int errorMj(char *message[], int count);
 int _putchar(char c);
-int _strcmp(char *s1, char *s2);
+int _strcmp(char *s1, const char *s2);
 
 void shellexit(char **args, char *line);
 int apply_builtins(char **args, char *line);

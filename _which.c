@@ -16,37 +16,47 @@ char *_which(char *filename)
 	if (_strcmp(ptrPATH, "") == 0)
 	{
 		if (stat(filename, &st) == 0)
-		{filename = strdup(filename);
+		{
+			filename = _strdup(filename);
 			return (filename);
 		}
 		else
 			return (NULL);
-	} fullpath = _getenv(ptrPATH), newpath = _strdup(fullpath);
+	}
+	fullpath = _getenv(ptrPATH), newpath = _strdup(fullpath);
 	token = strtok(newpath, ":");
 	while (token)
-	{ token = strtok(NULL, ":");
+	{
+		token = strtok(NULL, ":");
 		if (token == NULL)
 			break;
 		if (filename[0] == '/' && filename[1] != '/')
-		{ newpoin = malloc(sizeof(char *) * (_strlen(filename) + 1));
+		{
+			newpoin = malloc(sizeof(char *) * (_strlen(filename) + 1));
 			if (newpoin == NULL)
-			{ free(newpath);
+			{
+				free(newpath);
 				return (NULL);
-			} newpoin = _strcpy1(newpoin, filename, 0);
+			}
+			newpoin = _strcpy1(newpoin, filename, 0);
 		}
 		else
 		{
 			newpoin = malloc(sizeof(char *) * (_strlen(token) + _strlen(filename) + 2));
 			if (newpoin == NULL)
-			{ free(newpath);
+			{
+				free(newpath);
 				return (NULL);
 			}
 			newpoin = _strcpy1(newpoin, token, 1), newpoin = _strcat(newpoin, filename);
 		}
 		if (stat(newpoin, &st) == 0)
-		{ free(newpath);
+		{
+			free(newpath);
 			return (newpoin);
-		} free(newpoin);
-	} free(newpath);
+		}
+		free(newpoin);
+	}
+	free(newpath);
 	return (NULL);
 }
