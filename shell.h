@@ -13,6 +13,7 @@
 
 #define PATH_MAX 4096
 
+
 /**
  * struct builtins - struct tha search for the builtin
  * @arg: Builtin name
@@ -24,6 +25,12 @@ typedef struct builtins
 	char *arg;
 	void (*f)(char **args, char *line);
 } builtins_t;
+
+typedef struct prompt
+{
+	char *buffer;
+	int count;
+} str_p;
 
 extern char **environ;
 void shell(int c, char *v[], char **env);
@@ -46,5 +53,9 @@ void ignore_signal(int signal __attribute__((unused)));
 void errores(char **args, char **av, int count, int error);
 char *_itoa(int num);
 int _numlen(int n);
+
+str_p shell_prompt(int count);
+void fredom(char **args, char *buffer, char *pathname, int flag);
+int family(char **args, char *buffer, char *pathname, char **av, int count);
 
 #endif

@@ -9,7 +9,6 @@ char *_getenv(const char *name)
 	int i;
 	char *nameVar, *pathvalue;
 
-
 	//namePath = strdup(name);
 
 	// if (namePath[0] == ':')
