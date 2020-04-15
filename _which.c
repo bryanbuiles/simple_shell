@@ -7,12 +7,12 @@
 char *_which(char *filename)
 {
 	struct stat st;
-	char *newpoin, *newpath, *token, *fullpath, *ptrPATH;
+	char *newpoin, *newpath, *token, *fullpath;
 
-	ptrPATH = "PATH";
+	fullpath = _getenv("PATH");
 	if (filename == NULL)
 		return (NULL);
-	if (_strcmp(ptrPATH, "") == 0)
+	if (_strcmp(fullpath, "") == 0)
 	{
 		if (stat(filename, &st) == 0)
 		{
@@ -22,7 +22,7 @@ char *_which(char *filename)
 		else
 			return (NULL);
 	}
-	fullpath = _getenv(ptrPATH), newpath = _strdup(fullpath);
+	newpath = _strdup(fullpath);
 	token = strtok(newpath, ":");
 	while (token)
 	{

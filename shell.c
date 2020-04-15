@@ -24,7 +24,7 @@ int main(int ac, char *av[], char **env)
 			free(buffer);
 		else
 		{
-			args = split_line(buffer, " \t");
+			args = split_line(buffer, " \t\r\n\a");
 			if (args[0] == NULL)
 				free(args);
 			else
