@@ -12,14 +12,14 @@
 int family(char **args, char *buffer, char *pathname, char **av, int count)
 {
 	pid_t pid;
-	int Ex_Status, status;
+	int status;
 
 	pid = fork();
 	if (pid == -1)
 	{
 		perror("Error:");
 		fredom(args, buffer, pathname, 0);
-		return (1);
+		exit(0);
 	}
 	if (pid == 0)
 	{
@@ -28,21 +28,19 @@ int family(char **args, char *buffer, char *pathname, char **av, int count)
 		{
 			errores(args, av, count, 1);
 			fredom(args, buffer, pathname, 0);
-			Ex_Status = 127;
-			exit(Ex_Status);
+			exit(127);
 		}
 		if (execve(pathname, args, environ) == -1)
 		{
 			fredom(args, buffer, pathname, 1);
-			Ex_Status = 1;
-			return (Ex_Status);
+			exit(0);
 		}
 	}
 	else
 	{
 		waitpid(pid, &status, 0);
-		Ex_Status = WEXITSTATUS(status);
+		/*Ex_Status = WEXITSTATUS(status);*/
 	}
 	free(args);
-	return (0);
+	return (1);
 }

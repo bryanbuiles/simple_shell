@@ -15,7 +15,7 @@ char **split_line(char *line, char *delimiter)
 	if (alltokens == NULL)
 	{
 		perror("Error");
-		return (NULL);
+		exit(0);
 	}
 	token = strtok(line, delimiter);
 	for (i = 0; token; i++)
