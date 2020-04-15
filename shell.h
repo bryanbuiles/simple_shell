@@ -11,7 +11,7 @@
 #include <string.h>
 #include <limits.h>
 
-#define PATH_MAX    4096
+#define PATH_MAX 4096
 
 /**
  * struct builtins - struct tha search for the builtin
@@ -43,4 +43,8 @@ void shellexit(char **args, char *line);
 int apply_builtins(char **args, char *line);
 void envshell(char **args, char *line);
 void ignore_signal(int signal __attribute__((unused)));
+void errores(char **args, char **av, int count, int error);
+char *_itoa(int num);
+int _numlen(int n);
+
 #endif
