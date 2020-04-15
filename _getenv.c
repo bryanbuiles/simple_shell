@@ -9,6 +9,15 @@ char *_getenv(const char *name)
 	int i;
 	char *nameVar, *pathvalue;
 
+
+	//namePath = strdup(name);
+
+	// if (namePath[0] == ':')
+	// {
+	// 	namePath[0] = ' ';
+	// }
+	// printf("%s\n", name);
+
 	for (i = 0; environ[i]; i++)
 	{
 		/* copy the string in order to use strtok so the original doesn't change*/
@@ -17,12 +26,15 @@ char *_getenv(const char *name)
 		nameVar = strtok(nameVar, "=");
 		if ((strcmp(nameVar, name) == 0))
 		{
+			//printf("%s\n", name);
 			pathvalue = _strstr(environ[i], "=");
 			free(nameVar);
+			//free(name);
 			return (++pathvalue);
 		}
 		free(nameVar);
 	}
 	free(nameVar);
+	//free(name);
 	return ("(null)");
 }

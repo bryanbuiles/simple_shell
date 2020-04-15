@@ -13,6 +13,8 @@ int main(int ac, char *av[], char **env)
 	pid_t pid;
 	char *buffer = NULL, **args, *pathname;
 
+	int Ex_Status = 0;
+
 	do
 	{
 		/* isatty helps us with interactive and non inte. mode */
@@ -38,9 +40,10 @@ int main(int ac, char *av[], char **env)
 		{
 			if (isatty(STDIN_FILENO))
 				write(1, "\n", 1);
-			//free(buffer);
+			free(buffer);
 			exit(0);
 		}
+		Ex_Status = 0;
 		len = _strlen(buffer);
 		if (buffer[len - 1] == '\n')
 			buffer[len - 1] = '\0';
@@ -97,7 +100,8 @@ int main(int ac, char *av[], char **env)
 							errorMj(message, count);
 							free(args);
 							free(buffer);
-							exit(127);
+							Ex_Status = 127;
+							exit(Ex_Status);
 						}
 						if (execve(pathname, args, env) == -1)
 						{
@@ -105,7 +109,8 @@ int main(int ac, char *av[], char **env)
 							free(pathname);
 							free(args);
 							free(buffer);
-							return (1);
+							Ex_Status = 1;
+							return (Ex_Status);
 						}
 						/* despues de execve nada funciona */
 					}
@@ -113,7 +118,8 @@ int main(int ac, char *av[], char **env)
 					else
 					{
 						waitpid(pid, &status, 0);
-						// ret = 7
+						Ex_Status = WEXITSTATUS(status);
+						//ret = 7
 						// return (ret);
 					}
 					//need to figure what happen when we do not use this free
@@ -130,5 +136,5 @@ int main(int ac, char *av[], char **env)
 		(void)av;
 	if (env == NULL)
 		(void)env;
-	return (0);
+	return (Ex_Status);
 }
