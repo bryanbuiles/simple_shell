@@ -66,7 +66,7 @@ int main(int ac, char *av[], char **env)
 			}
 			else
 			{
-				char *message[] = {av[0], args[0], NULL};
+				//char *message[] = {av[0], args[0], NULL};
 
 				if (_strcmp(args[0], "exit") == 0)
 				{
@@ -97,7 +97,9 @@ int main(int ac, char *av[], char **env)
 						if (pathname == NULL)
 						{
 							/* this is for printing and error messages */
-							errorMj(message, count);
+							//errorMj(message, count);
+							errores(args, av, count, 1);
+
 							free(args);
 							free(buffer);
 							Ex_Status = 127;
@@ -127,9 +129,7 @@ int main(int ac, char *av[], char **env)
 				}
 			}
 		}
-
 	} while (flag);
-
 	if (!ac)
 		(void)ac;
 	if (av == NULL)

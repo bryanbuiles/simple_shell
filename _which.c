@@ -11,7 +11,7 @@ char *_which(char *filename)
 	char *newpoin, *newpath, *token, *fullpath, *ptrPATH, *current;
 	int sizecurrent;
 
-	ptrPATH = "PATH";
+	ptrPATH = "";
 
 	//fullpath = ":/home/vagrant/.vscode-server/bin/78a4c91400152c0f27ba4d363eb56d2835f9903a/bin:/home/vagrant/.vscode-server/bin/78a4c91400152c0f27ba4d363eb56d2835f9903a/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games";
 
@@ -23,6 +23,7 @@ char *_which(char *filename)
 		if (stat(filename, &st) == 0)
 		{
 			filename = strdup(filename);
+			printf(">>>%s\n", filename);
 			return (filename);
 		}
 		else
@@ -45,19 +46,22 @@ char *_which(char *filename)
 	// 	}
 
 	// }
-		
+
 	fullpath = _getenv(ptrPATH);
 	newpath = _strdup(fullpath);
 	token = strtok(newpath, ":");
 
 	while (token)
-	{ token = strtok(NULL, ":");
+	{
+		token = strtok(NULL, ":");
 		if (token == NULL)
 			break;
 		if (filename[0] == '/')
-		{ newpoin = malloc(sizeof(char *) * (_strlen(filename) + 1));
+		{
+			newpoin = malloc(sizeof(char *) * (_strlen(filename) + 1));
 			if (newpoin == NULL)
-			{ free(newpath);
+			{
+				free(newpath);
 				return (NULL);
 			}
 			newpoin = _strcpy1(newpoin, filename, 0);
@@ -66,14 +70,16 @@ char *_which(char *filename)
 		{
 			newpoin = malloc(sizeof(char *) * (_strlen(token) + _strlen(filename) + 2));
 			if (newpoin == NULL)
-			{ free(newpath);
+			{
+				free(newpath);
 				return (NULL);
 			}
 			newpoin = _strcpy1(newpoin, token, 1);
 			newpoin = _strcat(newpoin, filename);
 		}
 		if (stat(newpoin, &st) == 0)
-		{ free(newpath);
+		{
+			free(newpath);
 			return (newpoin);
 		}
 		free(newpoin);

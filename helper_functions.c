@@ -27,40 +27,29 @@ char **split_line(char *line, char *delimiter)
 	return (alltokens);
 }
 /**
- * errorMj - Print a error message
- * @message: Array of pointers terminate in NULL
- * @count: counter
- *Return: 0 in succes
+ * errores - Print a error message
+ * @args: Array of token terminate in NULL of getline function
+ * @av: Array of pointers terminate in NULL (argv) from main
+ * @count: counter of lines of the shell prompt
+ * @error: error index
+ *Return: void
  */
-int errorMj(char *message[], int count)
+void errores(char **args, char **av, int count, int error)
 {
-	int size1 = 0, size2 = 0;
-	char *aux = ": not found\n";
-	char *str1, *str2;
 
-	size1 = _strlen(message[0]) + 1;
-	str1 = malloc(sizeof(char) * size1);
-	if (str1 == NULL)
+	char *str;
+
+	str = _itoa(count);
+	if (error == 1)
 	{
-		exit(0);
+		write(1, av[0], _strlen(av[0]));
+		write(1, ": ", 2);
+		write(1, str, _strlen(str));
+		write(1, ": ", 2);
+		write(1, args[0], _strlen(args[0]));
+		write(1, ": not found\n", 13);
 	}
-	str1 = _strcpy1(str1, message[0], 0);
-	size2 = _strlen(message[1]) + _strlen(aux) + 1;
-	str2 = malloc(sizeof(char) * size2);
-	if (str2 == NULL)
-	{
-		exit(0);
-	}
-	str2 = _strcpy1(str2, message[1], 0);
-	str2 = strcat(str2, aux);
-	write(STDOUT_FILENO, str1, size1);
-	write(1, ": ", 3);
-	_putchar(count + '0');
-	write(1, ": ", 3);
-	write(STDOUT_FILENO, str2, size2);
-	free(str1);
-	free(str2);
-	return (0);
+	free(str);
 }
 /**
   * _putchar - writes the character c to stdout
@@ -95,6 +84,11 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (result);
 }
+/**
+ * ignore_signal - Ignore ctrl c signal
+ * @signal: signal
+ *Return: void
+ */
 void ignore_signal(int signal __attribute__((unused)))
 {
 	write(STDOUT_FILENO, "\nGreatTeam $ ", 14);

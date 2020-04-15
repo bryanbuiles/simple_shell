@@ -6,6 +6,14 @@ The simple shell is a command-line interpreter or shell that provides a command 
 
 We create our own simple UNIX command interpreter. The program has the same output as /bin/sh as well as the exact same error output. The only difference is when you print an error, the name of the program must be equivalent to your argv[0].
 
+## Features
+
+- Includes exit function that exits the shell
+- Includes enviroment builtin that display the current enviroment
+- Display a prompt where the user can type a command
+- Can handle commands with arguments
+- Use the PATH variable to find and execute the command
+
 ## Instructions:
 
 ### How to dowloaded
@@ -50,9 +58,21 @@ You can open a man page and get more information about it.
 
      user@ubuntu:~/c/printf$ **man ./man_1_simple_shell**
 
+## Usage
+
+1. Type ./shell in your shell. You should be promped with a \$.
+2. Type a command and press "Enter".
+3. An ouput will appear.
+4. Type your next command if you want.
+5. Exit shell by typing "exit"
+
 ### Blog:
 
+https://medium.com/@erikaosgue/4a72ef258c3a
+
 ## Files:
+
+This repository contains the following files:
 
 | File               | Description        |
 | ------------------ | ------------------ |
