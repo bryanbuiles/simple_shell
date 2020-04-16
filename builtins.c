@@ -10,7 +10,7 @@ int apply_builtins(char **args, char *line)
 	int i;
 
 	builtins_t all[] = {
-		{"exit", shellexit},
+		/*{"exit", shellexit}, */
 		{"env", envshell},
 		{NULL, NULL}};
 	for (i = 0; all[i].arg != NULL; i++)
