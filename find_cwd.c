@@ -36,5 +36,3 @@ char *_find_exe_cwd(char *filename)
 	free(current);
 	return (NULL);
 }
-
-
