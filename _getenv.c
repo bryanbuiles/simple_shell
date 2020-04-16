@@ -4,10 +4,14 @@
  * @name: it's the name of the variable -> NAME=value-variable
  * Return: A pointer to the value in the environment or NULL
  */
-char *_getenv(const char *name)
+char *_getenv(char *name)
 {
 	int i;
 	char *nameVar, *pathvalue;
+
+
+	if ((_strcmp(name, "" ) == 0 || name == NULL))
+		return (NULL);
 
 	for (i = 0; environ[i]; i++)
 	{

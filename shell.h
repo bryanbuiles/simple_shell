@@ -63,4 +63,9 @@ str_p shell_prompt(int count);
 void fredom(char **args, char *buffer, char *pathname, int flag);
 int family(char **args, char *buffer, char *pathname, char **av, int count);
 
+char *_find_exe_cwd(char *filename);
+char *find_slash(char *filename);
+char *PATH_empty(char *filename);
+char *find_exe_Path(char *filename);
+
 #endif
