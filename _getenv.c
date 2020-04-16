@@ -8,7 +8,7 @@
 char *_getenv(const char *name)
 {
 	int i;
-	char *nameVar, *pathvalue;
+	char *nameVar, *pathvalue, *nameVar1;
 
 
 	if ((_strcmp(name, "") == 0 || name == NULL))
@@ -17,17 +17,16 @@ char *_getenv(const char *name)
 	for (i = 0; environ[i]; i++)
 	{
 		/* copy the string in order to use strtok so the original doesn't change*/
-		nameVar = _strdup(environ[i]);
+		nameVar1 = _strdup(environ[i]);
 		/*strtok set all the delim into nulls, and return a pointer*/
-		nameVar = strtok(nameVar, "=");
+		nameVar = strtok(nameVar1, "=");
 		if ((_strcmp(nameVar, name) == 0))
 		{
 			pathvalue = _strstr(environ[i], "=");
-			free(nameVar);
+			free(nameVar1);
 			return (++pathvalue);
 		}
-		free(nameVar);
+		free(nameVar1);
 	}
-	free(nameVar);
 	return (NULL);
 }

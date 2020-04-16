@@ -58,7 +58,7 @@ void errores(char **args, char **av, int count, int error);
 char *_itoa(int num);
 int _numlen(int n);
 
-str_p shell_prompt(int count);
+str_p shell_prompt(int count, int exit_);
 void fredom(char **args, char *buffer, char *pathname, int flag);
 int family(char **args, char *buffer, char **av, int count);
 

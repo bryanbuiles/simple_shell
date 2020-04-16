@@ -10,7 +10,7 @@
 int family(char **args, char *buffer, char **av, int count)
 {
 	pid_t pid;
-	int status;
+	int status, exit_;
 	char *pathname = NULL;
 
 	pid = fork();
@@ -42,9 +42,9 @@ int family(char **args, char *buffer, char **av, int count)
 	else
 	{
 		waitpid(pid, &status, 0);
-		/* Ex_Status = WEXITSTATUS(status); */
+		exit_ = (WEXITSTATUS(status));
 	}
 	free(pathname);
-	return (0);
+	return (exit_);
 
 }

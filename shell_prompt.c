@@ -5,7 +5,7 @@
  * @count: The counter for every shell prompt display
  * Return: A struct with the buffer and the counter
  */
-str_p shell_prompt(int count)
+str_p shell_prompt(int count, int exit_)
 {
 	str_p buf_count;
 	size_t bufersize = 0;
@@ -27,7 +27,7 @@ str_p shell_prompt(int count)
 		if (isatty(STDIN_FILENO))
 			write(1, "\n", 1);
 		free(buffer);
-		exit(0);
+		exit(exit_);
 	}
 	len = _strlen(buffer);
 	if (buffer[len - 1] == '\n')
