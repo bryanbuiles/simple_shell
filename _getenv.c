@@ -1,10 +1,11 @@
 #include "shell.h"
+/* holaaa */
 /**
  * _getenv - return a pointer to the value of a environ variable
  * @name: it's the name of the variable -> NAME=value-variable
  * Return: A pointer to the value in the environment or NULL
  */
-char *_getenv(char *name)
+char *_getenv(const char *name)
 {
 	int i;
 	char *nameVar, *pathvalue;

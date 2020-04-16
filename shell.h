@@ -12,7 +12,6 @@
 #include <limits.h>
 
 #define PATH_MAX 4096
-
 /**
  * struct builtins - struct that search for the builtin
  * @arg: Builtin name
@@ -49,7 +48,7 @@ char *_strstr(char *haystack, char *needle);
 char *_strdup(char *str);
 int errorMj(char *message[], int count);
 int _putchar(char c);
-int _strcmp(char *s1, const char *s2);
+int _strcmp(const char *s1, const char *s2);
 
 void shellexit(char **args, char *line);
 int apply_builtins(char **args, char *line);
@@ -61,7 +60,7 @@ int _numlen(int n);
 
 str_p shell_prompt(int count);
 void fredom(char **args, char *buffer, char *pathname, int flag);
-int family(char **args, char *buffer, char *pathname, char **av, int count);
+int family(char **args, char *buffer, char **av, int count);
 
 char *_find_exe_cwd(char *filename);
 char *find_slash(char *filename);

@@ -77,7 +77,7 @@ int _putchar(char c)
  * @s2: Second srting to be compare
  *Return: the difference bettwen those teo letters
  */
-int _strcmp(char *s1, char *s2)
+int _strcmp(const char *s1, const char *s2)
 {
 	int i;
 	int result = 0;

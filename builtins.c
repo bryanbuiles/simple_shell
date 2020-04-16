@@ -15,7 +15,7 @@ int apply_builtins(char **args, char *line)
 		{NULL, NULL}};
 	for (i = 0; all[i].arg != NULL; i++)
 	{
-		if (strcmp(all[i].arg, args[0]) == 0)
+		if (_strcmp(all[i].arg, args[0]) == 0)
 		{
 			all[i].f(args, line);
 			return (0);
