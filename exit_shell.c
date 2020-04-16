@@ -7,7 +7,10 @@
  */
 void shellexit(char **args, char *line)
 {
-	free(args);
-	free(line);
+
+	if (line)
+		free(line);
+	if (args)
+		free(args);
 	exit(0);
 }
