@@ -8,16 +8,17 @@
  */
 int main(int ac, char *av[], char **env)
 {
-	int flag = 1, check, count = 0;
+	int flag = 1, check, count = 0, exit_ = 0;
 	char *buffer = NULL, **args;
 	str_p buf_count;
 
 	do
 
 	{
-		buf_count = shell_prompt(count);
+		buf_count = shell_prompt(count, exit_);
 		buffer = buf_count.buffer;
 		count = buf_count.count;
+		exit_ = 0;
 
 		if (*buffer != '\0')
 		{
@@ -25,16 +26,15 @@ int main(int ac, char *av[], char **env)
 			if (args[0] != NULL)
 			{
 				if (_strcmp(args[0], "exit") == 0)
+					flag = 0;
+				else
 				{
-					/*fredom(args, buffer, pathname, 0); */
-					free(args);
-					free(buffer);
-					exit(0);
-				}
-				check = apply_builtins(args, buffer);
-				if (check != 0)
-				{
-					family(args, buffer, av, count);
+					check = apply_builtins(args, buffer);
+					if (check != 0)
+					{
+						exit_ =  family(args, buffer, av, count);
+						printf("%i\n", exit_);
+					}
 				}
 			}
 			free(args);
@@ -43,5 +43,5 @@ int main(int ac, char *av[], char **env)
 	} while (flag);
 
 	(void)ac, (void)av, (void)env;
-	return (0);
+	return (exit_);
 }

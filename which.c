@@ -22,7 +22,7 @@ char *_which(char *filename)
 		else
 			return (newpoin);
 	}
-	if (_strcmp(fullpath, "") == 0)
+	if (fullpath == NULL)
 	{
 		newpoin = PATH_empty(filename);
 		if (newpoin == NULL)

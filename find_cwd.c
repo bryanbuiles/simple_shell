@@ -14,7 +14,7 @@ char *_find_exe_cwd(char *filename)
 
 	if (filename[1] == '/')
 	{
-		filename = strchr(filename, '/');
+		filename = _strchr(filename, '/');
 		filename++;
 	}
 
