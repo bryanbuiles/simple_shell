@@ -67,4 +67,6 @@ char *find_slash(char *filename);
 char *PATH_empty(char *filename);
 char *find_exe_Path(char *filename);
 
+char *_strchr(char *s, char c);
+
 #endif

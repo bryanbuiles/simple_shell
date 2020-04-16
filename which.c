@@ -31,7 +31,7 @@ char *_which(char *filename)
 			return (newpoin);
 	}
 
-	else if (fullpath[0] == ':')
+	else if (fullpath[0] == ':' || filename[0] == '.')
 	{
 		newpoin = _find_exe_cwd(filename);
 		if (newpoin == NULL)
