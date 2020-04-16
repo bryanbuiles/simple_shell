@@ -46,5 +46,4 @@ int family(char **args, char *buffer, char **av, int count)
 	}
 	free(pathname);
 	return (exit_);
-
 }

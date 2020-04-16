@@ -1,5 +1,5 @@
 #include "shell.h"
- /**
+/**
  * shell_prompt - display the shell prompt, and use the issaty
  * function for interactive and none  interactive mode
  * @count: The counter for every shell prompt display
@@ -36,5 +36,4 @@ str_p shell_prompt(int count, int exit_)
 	buf_count.count = count;
 
 	return (buf_count);
-
 }
