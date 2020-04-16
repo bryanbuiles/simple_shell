@@ -1,4 +1,5 @@
 #include "shell.h"
+/* holaaa */
 /**
  * _getenv - return a pointer to the value of a environ variable
  * @name: it's the name of the variable -> NAME=value-variable
@@ -8,6 +9,10 @@ char *_getenv(const char *name)
 {
 	int i;
 	char *nameVar, *pathvalue;
+
+
+	if ((_strcmp(name, "") == 0 || name == NULL))
+		return (NULL);
 
 	for (i = 0; environ[i]; i++)
 	{

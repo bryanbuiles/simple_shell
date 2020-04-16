@@ -10,7 +10,7 @@ int apply_builtins(char **args, char *line)
 	int i;
 
 	builtins_t all[] = {
-		{"exit", shellexit},
+		/*{"exit", shellexit}, */
 		{"env", envshell},
 		{NULL, NULL}};
 	for (i = 0; all[i].arg != NULL; i++)
@@ -35,8 +35,8 @@ void envshell(char **args, char *line)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-		write(STDOUT_FILENO, "\n", 1);
+		write(1, environ[i], _strlen(environ[i]));
+		write(1, "\n", 1);
 	}
 	(void)args;
 	(void)line;

@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * fredom - free the pointers
  * @args: Double pointer to tokens like: {"ls","-l" NULL}
@@ -10,11 +9,11 @@
  */
 void fredom(char **args, char *buffer, char *pathname, int flag)
 {
+
 	if (flag == 1)
 	{
 		free(pathname);
 	}
 	free(args);
 	free(buffer);
-
 }

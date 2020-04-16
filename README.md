@@ -75,7 +75,7 @@ https://medium.com/@erikaosgue/4a72ef258c3a
 This repository contains the following files:
 
 | File               | Description          |
-| ------------------ | -------------------  |
+| ------------------ | -------------------- |
 | shell.c            | Execute the shell    |
 | shell.h            | Header               |
 | functions.c        | Helper functions     |
