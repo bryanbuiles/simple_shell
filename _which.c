@@ -1,5 +1,4 @@
 #include "shell.h"
-/* holaaa */
 /**
  * _which - function that finds a file in the variable PATH
  * @filename: it's the file or path to find
@@ -7,56 +6,43 @@
  */
 char *_which(char *filename)
 {
-	struct stat st;
-	char *newpoin, *newpath, *token, *fullpath;
+	char *newpoin, *fullpath, *ptrPATH;
 
-	fullpath = _getenv("PATH");
+	ptrPATH = "PATH";
+	fullpath = _getenv(ptrPATH);
+	//fullpath = ":/home/vagrant/.vscode-server/bin/78a4c91400152c0f27ba4d363eb56d2835f9903a/bin:/home/vagrant/.vscode-server/bin/78a4c91400152c0f27ba4d363eb56d2835f9903a/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games";
+
+
 	if (filename == NULL)
 		return (NULL);
+
+	else if (filename[0] == '/')
+	{
+		newpoin = find_slash(filename);
+		if (newpoin == NULL)
+			return (NULL);
+		else
+			return (newpoin);
+	}
 	if (_strcmp(fullpath, "") == 0)
 	{
-		if (stat(filename, &st) == 0)
-		{
-			filename = _strdup(filename);
-			return (filename);
-		}
-		else
+		newpoin = PATH_empty(filename);
+		if (newpoin == NULL)
 			return (NULL);
-	}
-	newpath = _strdup(fullpath);
-	token = strtok(newpath, ":");
-	while (token)
-	{
-		token = strtok(NULL, ":");
-		if (token == NULL)
-			break;
-		if (filename[0] == '/' && filename[1] != '/')
-		{
-			newpoin = malloc(sizeof(char *) * (_strlen(filename) + 1));
-			if (newpoin == NULL)
-			{
-				free(newpath);
-				return (NULL);
-			}
-			newpoin = _strcpy1(newpoin, filename, 0);
-		}
 		else
-		{
-			newpoin = malloc(sizeof(char *) * (_strlen(token) + _strlen(filename) + 2));
-			if (newpoin == NULL)
-			{
-				free(newpath);
-				return (NULL);
-			}
-			newpoin = _strcpy1(newpoin, token, 1), newpoin = _strcat(newpoin, filename);
-		}
-		if (stat(newpoin, &st) == 0)
-		{
-			free(newpath);
 			return (newpoin);
-		}
-		free(newpoin);
 	}
-	free(newpath);
+
+	else if (fullpath[0] == ':')
+	{
+		newpoin = _find_exe_cwd(filename);
+		if (newpoin == NULL)
+			return (NULL);
+		else
+			return (newpoin);
+	}
+	newpoin = find_exe_Path(filename);
+	if (newpoin != NULL)
+		return (newpoin);
 	return (NULL);
 }
