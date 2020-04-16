@@ -11,7 +11,7 @@ char *find_exe_Path(char *filename)
 	int size = 0;
 
 	newpath = getenv("PATH");
-	newpath = strdup(newpath);
+	newpath = _strdup(newpath);
 
 	token = strtok(newpath, ":");
 
@@ -20,7 +20,7 @@ char *find_exe_Path(char *filename)
 		token = strtok(NULL, ":");
 		if (token == NULL)
 			break;
-		size = (strlen(token) + strlen(filename) + 2);
+		size = (_strlen(token) + _strlen(filename) + 2);
 
 		newpoin = malloc(sizeof(char) * size);
 		if (newpoin == NULL)
@@ -29,7 +29,7 @@ char *find_exe_Path(char *filename)
 			return (NULL);
 		}
 		newpoin = _strcpy1(newpoin, token, 1);
-		newpoin = strcat(newpoin, filename);
+		newpoin = _strcat(newpoin, filename);
 
 		if (stat(newpoin, &st) == 0)
 		{
