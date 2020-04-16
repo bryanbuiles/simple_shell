@@ -11,7 +11,7 @@ char *_getenv(const char *name)
 	char *nameVar, *pathvalue;
 
 
-	if ((_strcmp(name, "" ) == 0 || name == NULL))
+	if ((_strcmp(name, "") == 0 || name == NULL))
 		return (NULL);
 
 	for (i = 0; environ[i]; i++)

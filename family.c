@@ -3,7 +3,6 @@
  * family - the fork process
  * @args: Double pointer to tokens like: {"ls","-l" NULL}
  * @buffer: It's the pointer from getline function from stdin
- * @pathname: it's the first argument of args -> args[0]
  * @av: argument vector or array of arguments
  * @count: The counter for every shell prompt display
  * Return: 0 if succes
@@ -11,7 +10,7 @@
 int family(char **args, char *buffer, char **av, int count)
 {
 	pid_t pid;
-	int Ex_Status = 0, status;
+	int status;
 	char *pathname = NULL;
 
 	pid = fork();
@@ -37,15 +36,15 @@ int family(char **args, char *buffer, char **av, int count)
 			free(args);
 			free(buffer);
 			perror("");
-			exit (127);
+			exit(127);
 		}
 	}
 	else
 	{
 		waitpid(pid, &status, 0);
-		Ex_Status = WEXITSTATUS(status);
+		/* Ex_Status = WEXITSTATUS(status); */
 	}
 	free(pathname);
-	return(0);
+	return (0);
 
 }

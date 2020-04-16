@@ -9,7 +9,7 @@ str_p shell_prompt(int count)
 {
 	str_p buf_count;
 	size_t bufersize = 0;
-	int bytes, len = 0;//Ex_Status = 0;
+	int bytes, len = 0;
 	char *buffer = NULL;
 
 	signal(SIGINT, ignore_signal);

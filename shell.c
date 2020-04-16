@@ -8,8 +8,7 @@
  */
 int main(int ac, char *av[], char **env)
 {
-	//size_t bufersize = 0;
-	int flag = 1, check, count = 0, Ex_Status = 0;
+	int flag = 1, check, count = 0;
 	char *buffer = NULL, **args;
 	str_p buf_count;
 
@@ -19,7 +18,6 @@ int main(int ac, char *av[], char **env)
 		buf_count = shell_prompt(count);
 		buffer = buf_count.buffer;
 		count = buf_count.count;
-		//Ex_Status = 0;
 
 		if (*buffer != '\0')
 		{
@@ -28,7 +26,7 @@ int main(int ac, char *av[], char **env)
 			{
 				if (_strcmp(args[0], "exit") == 0)
 				{
-					//fredom(args, buffer, pathname, 0);
+					/*fredom(args, buffer, pathname, 0); */
 					free(args);
 					free(buffer);
 					exit(0);
@@ -36,7 +34,7 @@ int main(int ac, char *av[], char **env)
 				check = apply_builtins(args, buffer);
 				if (check != 0)
 				{
-					Ex_Status = family(args, buffer, av, count);
+					family(args, buffer, av, count);
 				}
 			}
 			free(args);

@@ -10,8 +10,6 @@ char *_which(char *filename)
 
 	ptrPATH = "PATH";
 	fullpath = _getenv(ptrPATH);
-	//fullpath = ":/home/vagrant/.vscode-server/bin/78a4c91400152c0f27ba4d363eb56d2835f9903a/bin:/home/vagrant/.vscode-server/bin/78a4c91400152c0f27ba4d363eb56d2835f9903a/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games";
-
 
 	if (filename == NULL)
 		return (NULL);
