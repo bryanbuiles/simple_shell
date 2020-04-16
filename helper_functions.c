@@ -42,20 +42,20 @@ void errores(char **args, char **av, int count, int error)
 	str = _itoa(count);
 	if (error == 1)
 	{
-		write(1, av[0], _strlen(av[0]));
-		write(1, ": ", 2);
-		write(1, str, _strlen(str));
-		write(1, ": ", 2);
-		write(1, args[0], _strlen(args[0]));
-		write(1, ": not found\n", 13);
+		write(STDOUT_FILENO, av[0], _strlen(av[0]));
+		write(STDOUT_FILENO, ": ", 2);
+		write(STDOUT_FILENO, str, _strlen(str));
+		write(STDOUT_FILENO, ": ", 2);
+		write(STDOUT_FILENO, args[0], _strlen(args[0]));
+		write(STDOUT_FILENO, ": not found\n", 13);
 	}
 	if (error == 2)
 	{
-		write(1, av[0], _strlen(av[0]));
-		write(1, ": ", 2);
-		write(1, str, _strlen(str));
-		write(1, ": ", 2);
-		write(1, args[0], _strlen(args[0]));
+		write(STDOUT_FILENO, av[0], _strlen(av[0]));
+		write(STDOUT_FILENO, ": ", 2);
+		write(STDOUT_FILENO, str, _strlen(str));
+		write(STDOUT_FILENO, ": ", 2);
+		write(STDOUT_FILENO, args[0], _strlen(args[0]));
 	}
 	free(str);
 }
@@ -68,7 +68,7 @@ void errores(char **args, char **av, int count, int error)
   */
 int _putchar(char c)
 {
-	write(1, &c, 1);
+	write(STDOUT_FILENO, &c, 1);
 	return (0);
 }
 /**

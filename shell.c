@@ -34,7 +34,7 @@ int main(int ac, char *av[], char **env)
 				{
 					check = apply_builtins(args, buffer);
 					if (check != 0)
-						exit_ =  family(args, buffer, av, count);
+						exit_ = family(args, buffer, av, count);
 				}
 			}
 			free(args);
