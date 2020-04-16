@@ -25,17 +25,9 @@ int main(int ac, char *av[], char **env)
 			args = split_line(buffer, " \t\r\a");
 			if (args[0] != NULL)
 			{
-				if (_strcmp(args[0], "exit") == 0)
-				{
-					flag = 0;
-					exit_ = 0;
-				}
-				else
-				{
-					check = apply_builtins(args, buffer);
-					if (check != 0)
-						exit_ = family(args, buffer, av, count);
-				}
+				check = apply_builtins(args, buffer);
+				if (check != 0)
+					exit_ = family(args, buffer, av, count);
 			}
 			free(args);
 		}
