@@ -2,17 +2,18 @@
 /**
  * find_exe_Path - Checks if the file exist in the PATH variable
  * @filename: name of the executable file
+ * @index: for checking the current directory at that index compare with token
+ * @newpath: its the path value of the env variable usually PATH
  * Return: A pointer with the pathname NULL otherwise
  */
-char *find_exe_Path(char *filename)
+char *find_exe_Path(char *filename, int index, char *newpath)
 {
 	struct stat st;
-	char *newpath, *token, *newpoin;
-	int size = 0;
+	char *token, *newpoin;
+	int size = 0, i = 0;
 
-	newpath = getenv("PATH");
+
 	newpath = _strdup(newpath);
-
 	token = strtok(newpath, ":");
 
 	while (token)
@@ -20,6 +21,13 @@ char *find_exe_Path(char *filename)
 		token = strtok(NULL, ":");
 		if (token == NULL)
 			break;
+		i += 1;
+		if (i == (index - 1))
+		{
+			newpoin = _find_exe_cwd(filename);
+			if (newpoin != NULL)
+				return (newpoin);
+		}
 		size = (_strlen(token) + _strlen(filename) + 2);
 
 		newpoin = malloc(sizeof(char) * size);

@@ -32,18 +32,16 @@ int family(char **args, char *buffer, char **av, int count)
 		if (execve(pathname, args, environ) == -1)
 		{
 			errores(args, av, count, 2);
-			fredom(args, buffer, pathname, 1);
+			free(pathname);
+			free(args);
+			free(buffer);
 			perror("");
 			exit(127);
 		}
 	}
 	else
 	{
-		do
-
-		{
-			waitpid(pid, &status, WUNTRACED);
-		} while (WIFEXITED(status) == 0 && WIFSIGNALED(status) == 0);
+		waitpid(pid, &status, 0);
 		exit_ = (WEXITSTATUS(status));
 	}
 	free(pathname);
