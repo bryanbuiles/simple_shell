@@ -7,7 +7,7 @@
  */
 char **split_line(char *line, char *delimiter)
 {
-	size_t buffer_size = 64;
+	size_t buffer_size = 200;
 	char **alltokens, *token;
 	int i;
 

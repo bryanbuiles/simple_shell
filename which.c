@@ -7,40 +7,43 @@
 char *_which(char *filename)
 {
 	char *newpoin, *fullpath, *ptrPATH;
+	int index;
 
 	ptrPATH = "PATH";
 	fullpath = _getenv(ptrPATH);
-
 	if (filename == NULL)
 		return (NULL);
-
 	else if (filename[0] == '/')
-	{
-		newpoin = find_slash(filename);
-		if (newpoin == NULL)
-			return (NULL);
-		else
+	{ newpoin = find_slash(filename);
+		if (newpoin != NULL)
 			return (newpoin);
+		return (NULL);
 	}
 	if (fullpath == NULL)
-	{
-		newpoin = PATH_empty(filename);
-		if (newpoin == NULL)
-			return (NULL);
-		else
+	{ newpoin = PATH_empty(filename);
+		if (newpoin != NULL)
+			return (newpoin);
+		return (NULL);
+	}
+	if (filename[0] == '.')
+	{ newpoin = _find_exe_cwd(filename);
+		if (newpoin != NULL)
+			return (newpoin);
+		return (NULL);
+	}
+	else if (fullpath[0] == ':')
+	{ newpoin = _find_exe_cwd(filename);
+		if (newpoin != NULL)
 			return (newpoin);
 	}
-
-	else if (fullpath[0] == ':' || filename[0] == '.')
-	{
-		newpoin = _find_exe_cwd(filename);
-		if (newpoin == NULL)
-			return (NULL);
-		else
-			return (newpoin);
-	}
-	newpoin = find_exe_Path(filename);
+	index = cwd_inside_PATH(fullpath);
+	newpoin = find_exe_Path(filename, index, fullpath);
 	if (newpoin != NULL)
 		return (newpoin);
+	else if (index == 0 && fullpath[_strlen(fullpath) - 1] == ':')
+	{ newpoin = _find_exe_cwd(filename);
+		if (newpoin != NULL)
+			return (newpoin);
+	}
 	return (NULL);
 }
