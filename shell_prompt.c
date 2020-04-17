@@ -3,6 +3,7 @@
  * shell_prompt - display the shell prompt, and use the issaty
  * function for interactive and none  interactive mode
  * @count: The counter for every shell prompt display
+ * @exit_: integer with the last exit of a command
  * Return: A struct with the buffer and the counter
  */
 str_p shell_prompt(int count, int exit_)

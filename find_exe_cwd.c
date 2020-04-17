@@ -12,12 +12,6 @@ char *_find_exe_cwd(char *filename)
 	int sizecurrent = 0;
 	struct stat st;
 
-	if (filename[1] == '/')
-	{
-		filename = _strchr(filename, '/');
-		filename++;
-	}
-
 	buffer = getcwd(NULL, 0);
 	if (buffer == NULL)
 		return (NULL);
@@ -30,7 +24,6 @@ char *_find_exe_cwd(char *filename)
 	_strcpy1(current, buffer, 1);
 	_strcat(current, filename);
 	free(buffer);
-
 	if (stat(current, &st) == 0)
 		return (current);
 	free(current);

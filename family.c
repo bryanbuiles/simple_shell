@@ -10,7 +10,7 @@
 int family(char **args, char *buffer, char **av, int count)
 {
 	pid_t pid;
-	int status, exit_;
+	int status = 0, exit_ = 0, flag = 0;
 	char *pathname = NULL;
 
 	pid = fork();
@@ -25,18 +25,18 @@ int family(char **args, char *buffer, char **av, int count)
 		if (pathname == NULL)
 		{
 			errores(args, av, count, 1);
-			free(args);
-			free(buffer);
+			fredom(args, buffer, pathname, 0);
 			exit(127);
 		}
 		if (execve(pathname, args, environ) == -1)
 		{
-			errores(args, av, count, 2);
-			free(pathname);
-			free(args);
-			free(buffer);
-			perror("");
-			exit(127);
+			errores(args, av, count, 2), perror("");
+			if (_strcmp(pathname, "..") == 0)
+				flag = 1;
+			fredom(args, buffer, pathname, 1);
+			if (flag == 1)
+				exit(127);
+			exit(126);
 		}
 	}
 	else
