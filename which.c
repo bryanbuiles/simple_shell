@@ -11,9 +11,8 @@ char *_which(char *filename)
 
 	ptrPATH = "PATH";
 	fullpath = _getenv(ptrPATH);
-	if (filename == NULL)
-		return (NULL);
-	else if (filename[0] == '/')
+
+	if (filename[0] == '/')
 	{ newpoin = find_slash(filename);
 		if (newpoin != NULL)
 			return (newpoin);

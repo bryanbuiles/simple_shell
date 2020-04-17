@@ -11,7 +11,6 @@
 #include <string.h>
 #include <limits.h>
 
-#define PATH_MAX 4096
 /**
  * struct builtins - struct that search for the builtin
  * @arg: Builtin name

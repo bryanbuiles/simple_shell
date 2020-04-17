@@ -18,7 +18,6 @@ int main(int ac, char *av[], char **env)
 		buf_count = shell_prompt(count, exit_);
 		buffer = buf_count.buffer;
 		count = buf_count.count;
-		exit_ = 0;
 
 		if (*buffer != '\0')
 		{
@@ -27,8 +26,9 @@ int main(int ac, char *av[], char **env)
 			{
 				if (_strcmp(args[0], "exit") == 0)
 				{
-					flag = 0;
-					exit_ = 6;
+					free(args);
+					free(buffer);
+					exit(exit_);
 				}
 				else
 				{
