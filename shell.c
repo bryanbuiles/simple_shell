@@ -26,7 +26,10 @@ int main(int ac, char *av[], char **env)
 			if (args[0] != NULL)
 			{
 				if (_strcmp(args[0], "exit") == 0)
+				{
 					flag = 0;
+					exit_ = 6;
+				}
 				else
 				{
 					check = apply_builtins(args, buffer);

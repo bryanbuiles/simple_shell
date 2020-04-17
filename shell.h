@@ -65,9 +65,10 @@ int family(char **args, char *buffer, char **av, int count);
 char *_find_exe_cwd(char *filename);
 char *find_slash(char *filename);
 char *PATH_empty(char *filename);
-char *find_exe_Path(char *filename);
+char *find_exe_Path(char *filename, int index, char *newpath);
 
 char *_strchr(char *s, char c);
 void _setenv(char **args, char *line);
+int cwd_inside_PATH(char *fullpathname);
 
 #endif
