@@ -42,21 +42,21 @@ void errores(char **args, char **av, int count, int error)
 	str = _itoa(count);
 	if (error == 1)
 	{
-		write(STDOUT_FILENO, av[0], _strlen(av[0]));
-		write(STDOUT_FILENO, ": ", 3);
-		write(STDOUT_FILENO, str, _strlen(str));
-		write(STDOUT_FILENO, ": ", 3);
-		write(STDOUT_FILENO, args[0], _strlen(args[0]));
-		write(STDOUT_FILENO, ": not found\n", 13);
+		write(STDERR_FILENO, av[0], _strlen(av[0]));
+		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, str, _strlen(str));
+		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, args[0], _strlen(args[0]));
+		write(STDERR_FILENO, ": not found\n", 13);
 	}
 	if (error == 2)
 	{
-		write(STDOUT_FILENO, av[0], _strlen(av[0]));
-		write(STDOUT_FILENO, ": ", 3);
-		write(STDOUT_FILENO, str, _strlen(str));
-		write(STDOUT_FILENO, ": ", 3);
-		write(STDOUT_FILENO, args[0], _strlen(args[0]));
-		write(STDOUT_FILENO, ": ", 3);
+		write(STDERR_FILENO, av[0], _strlen(av[0]));
+		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, str, _strlen(str));
+		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, args[0], _strlen(args[0]));
+		write(STDERR_FILENO, ": ", 3);
 	}
 	free(str);
 }
