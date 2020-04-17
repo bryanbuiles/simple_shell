@@ -8,7 +8,7 @@ char *PATH_empty(char *filename)
 {
 	struct stat st;
 
-	if (stat(filename, &st) == 0)
+	if (stat(filename, &st) == 0 && st.st_mode & S_IXUSR && !S_ISDIR(st.st_mode))
 	{
 		filename = _strdup(filename);
 		return (filename);

@@ -11,7 +11,7 @@ char *find_slash(char *filename)
 	char *newpoin;
 
 	newpoin = _strdup(filename);
-	if (stat(newpoin, &st) == 0)
+	if (stat(newpoin, &st) == 0 && st.st_mode & S_IXUSR && !S_ISDIR(st.st_mode))
 		return (newpoin);
 
 	free(newpoin);

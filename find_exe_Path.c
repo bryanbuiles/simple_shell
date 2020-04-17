@@ -10,8 +10,7 @@ char *find_exe_Path(char *filename, int index, char *newpath)
 {
 	struct stat st;
 	char *token, *newpoin;
-	int size = 0, i = 0;
-
+	int size = 0, Dir = 0;
 
 	newpath = _strdup(newpath);
 	token = strtok(newpath, ":");
@@ -21,8 +20,8 @@ char *find_exe_Path(char *filename, int index, char *newpath)
 		token = strtok(NULL, ":");
 		if (token == NULL)
 			break;
-		i += 1;
-		if (i == (index - 1))
+		Dir += 1;
+		if (Dir == (index - 1))
 		{
 			newpoin = _find_exe_cwd(filename);
 			if (newpoin != NULL)
@@ -38,8 +37,7 @@ char *find_exe_Path(char *filename, int index, char *newpath)
 		}
 		newpoin = _strcpy1(newpoin, token, 1);
 		newpoin = _strcat(newpoin, filename);
-
-		if (stat(newpoin, &st) == 0)
+		if (stat(newpoin, &st) == 0 && st.st_mode & S_IXUSR && !S_ISDIR(st.st_mode))
 		{
 			free(newpath);
 			return (newpoin);
