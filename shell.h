@@ -68,5 +68,6 @@ char *PATH_empty(char *filename);
 char *find_exe_Path(char *filename);
 
 char *_strchr(char *s, char c);
+void _setenv(char **args, char *line);
 
 #endif
