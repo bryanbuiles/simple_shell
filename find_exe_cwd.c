@@ -24,7 +24,7 @@ char *_find_exe_cwd(char *filename)
 	_strcpy1(current, buffer, 1);
 	_strcat(current, filename);
 	free(buffer);
-	if (stat(current, &st) == 0 && st.st_mode & S_IXUSR && !S_ISDIR(st.st_mode))
+	if (stat(current, &st) == 0)
 		return (current);
 	free(current);
 	return (NULL);

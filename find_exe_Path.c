@@ -37,7 +37,7 @@ char *find_exe_Path(char *filename, int index, char *newpath)
 		}
 		newpoin = _strcpy1(newpoin, token, 1);
 		newpoin = _strcat(newpoin, filename);
-		if (stat(newpoin, &st) == 0 && st.st_mode & S_IXUSR && !S_ISDIR(st.st_mode))
+		if (stat(newpoin, &st) == 0)
 		{
 			free(newpath);
 			return (newpoin);
