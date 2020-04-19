@@ -9,11 +9,13 @@
  */
 void fredom(char **args, char *buffer, char *pathname, int flag)
 {
-
 	if (flag == 1)
 	{
 		free(pathname);
 	}
-	free(args);
-	free(buffer);
+	if (flag != 2)
+	{
+		free(args);
+		free(buffer);
+	}
 }
