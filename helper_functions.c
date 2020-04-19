@@ -42,39 +42,21 @@ void errores(char **args, char **av, int count, int error)
 	str = _itoa(count);
 	if (error == 1)
 	{
-<<<<<<< HEAD
-		write(STDOUT_FILENO, av[0], _strlen(av[0]));
-		write(STDOUT_FILENO, ": ", 2);
-		write(STDOUT_FILENO, str, _strlen(str));
-		write(STDOUT_FILENO, ": ", 2);
-		write(STDOUT_FILENO, args[0], _strlen(args[0]));
-		write(STDOUT_FILENO, ": not found\n", 12);
-=======
 		write(STDERR_FILENO, av[0], _strlen(av[0]));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, str, _strlen(str));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, args[0], _strlen(args[0]));
-		write(STDERR_FILENO, ": not found\n", 13);
->>>>>>> 85d3e7f8dca0e18867c1117b51ac59ae1893b61e
+		write(STDERR_FILENO, ": not found\n", 12);
 	}
 	if (error == 2 || error == 3)
 	{
-<<<<<<< HEAD
-		write(STDOUT_FILENO, av[0], _strlen(av[0]));
-		write(STDOUT_FILENO, ": ", 2);
-		write(STDOUT_FILENO, str, _strlen(str));
-		write(STDOUT_FILENO, ": ", 2);
-		write(STDOUT_FILENO, args[0], _strlen(args[0]));
-		write(STDOUT_FILENO, ": ", 2);
-=======
 		write(STDERR_FILENO, av[0], _strlen(av[0]));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, str, _strlen(str));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, args[0], _strlen(args[0]));
-		write(STDERR_FILENO, ": ", 3);
->>>>>>> 85d3e7f8dca0e18867c1117b51ac59ae1893b61e
+		write(STDERR_FILENO, ": ", 2);
 	}
 	if (error == 3)
 		write(STDERR_FILENO, "Permission denied\n", 18);
