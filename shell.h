@@ -60,8 +60,8 @@ int _numlen(int n);
 
 str_p shell_prompt(int count, int exit_);
 void fredom(char **args, char *buffer, char *pathname, int flag);
-int family(char *pathname, char **args);
-int access_to_family(char **args, char **av, int count);
+int family(char *pathname, char **args, char *buffer, char **av, int count);
+int access_to_family(char **args, char *buffer, char **av, int count);
 
 
 

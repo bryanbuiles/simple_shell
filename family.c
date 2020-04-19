@@ -2,11 +2,12 @@
 /**
  * access_to_family - the fork process
  * @args: Double pointer to tokens like: {"ls","-l" NULL}
+ * @buffer: It's the pointer from getline function from stdin
  * @av: argument vector or array of arguments
  * @count: The counter for every shell prompt display
  * Return: 0 if succes, other number otherwise
  */
-int access_to_family(char **args, char **av, int count)
+int access_to_family(char **args, char *buffer, char **av, int count)
 {
 	char *pathname = NULL;
 
@@ -21,22 +22,24 @@ int access_to_family(char **args, char **av, int count)
 		errores(args, av, count, 1);
 		return (127);
 	}
-	/* checks whether the calling process can access the file pathname. succes 0*/
 	if (access(pathname, X_OK) != 0)
 	{
 		errores(args, av, count, 3);
 		free(pathname);
 		return (126);
 	}
-	return (family(pathname, args));
+	return (family(pathname, args, buffer, av, count));
 }
 /**
  * family - the fork process
- * @args: Double pointer to tokens like: {"ls","-l" NULL}
  * @pathname: It's the pointer to the pathname of the file
- * Return: 0 if succes
+ * @args: Double pointer to tokens like: {"ls","-l" NULL}
+ * @buffer: It's the pointer from getline function from stdin
+ * @av: argument vector or array of arguments
+ * @count: The counter for every shell prompt display
+ * Return: 0 if succes, other number otherwise
  */
-int family(char *pathname, char **args)
+int family(char *pathname, char **args, char *buffer, char **av, int count)
 {
 	pid_t pid;
 	int status = 0, exit_ = 0;
@@ -48,7 +51,14 @@ int family(char *pathname, char **args)
 		return (1);
 	}
 	if (pid == 0)
-		execve(pathname, args, environ);
+	{
+		if (execve(pathname, args, environ) == -1)
+		{
+			errores(args, av, count, 3);
+			fredom(args, buffer, pathname, 1);
+			exit(126);
+		}
+	}
 	else
 	{
 		waitpid(pid, &status, 0);

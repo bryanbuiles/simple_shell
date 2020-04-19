@@ -19,7 +19,6 @@ char *_which(char *filename)
 			return (newpoin);
 		return (NULL);
 	}
-
 	if (filename[0] == '/')
 	{
 		newpoin = find_slash(filename);
@@ -27,7 +26,6 @@ char *_which(char *filename)
 			return (newpoin);
 		return (NULL);
 	}
-
 	else if (fullpath[0] == ':' || filename[0] == '.')
 	{
 		newpoin = _find_exe_cwd(filename);
