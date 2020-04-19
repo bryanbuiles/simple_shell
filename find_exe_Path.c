@@ -6,13 +6,13 @@
  * @newpath: its the path value of the env variable usually PATH
  * Return: A pointer with the pathname NULL otherwise
  */
-char *find_exe_Path(char *filename, int index, char *newpath)
+char *find_exe_Path(char *filename, int index, char *fullpath)
 {
 	struct stat st;
-	char *token, *newpoin;
+	char *token, *newpoin, *newpath;
 	int size = 0, Dir = 0;
 
-	newpath = _strdup(newpath);
+	newpath = _strdup(fullpath);
 	token = strtok(newpath, ":");
 	while (token)
 	{
@@ -40,5 +40,11 @@ char *find_exe_Path(char *filename, int index, char *newpath)
 			break;
 	}
 	free(newpath);
+	if (fullpath[_strlen(fullpath) - 1] == ':')
+	{
+		newpoin = _find_exe_cwd(filename);
+		if (newpoin != NULL)
+			return (newpoin);
+	}
 	return (NULL);
 }

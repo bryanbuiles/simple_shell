@@ -12,7 +12,12 @@ char *_find_exe_cwd(char *filename)
 	int sizecurrent = 0;
 	struct stat st;
 
-	
+	if (filename[1] == '/')
+	{
+		filename = _strchr(filename, '/');
+		filename++;
+	}
+
 	buffer = getcwd(NULL, 0);
 	if (buffer == NULL)
 		return (NULL);

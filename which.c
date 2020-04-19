@@ -12,37 +12,32 @@ char *_which(char *filename)
 	ptrPATH = "PATH";
 	fullpath = _getenv(ptrPATH);
 
-	if (filename[0] == '/')
-	{ newpoin = find_slash(filename);
-		if (newpoin != NULL)
-			return (newpoin);
-		return (NULL);
-	}
 	if (fullpath == NULL)
-	{ newpoin = PATH_empty(filename);
+	{
+		newpoin = PATH_empty(filename);
 		if (newpoin != NULL)
 			return (newpoin);
 		return (NULL);
 	}
-	if (filename[0] == '.' )
-	{ newpoin = _find_exe_cwd(filename);
+
+	if (filename[0] == '/')
+	{
+		newpoin = find_slash(filename);
 		if (newpoin != NULL)
 			return (newpoin);
 		return (NULL);
 	}
-	else if (fullpath[0] == ':')
-	{ newpoin = _find_exe_cwd(filename);
+
+	else if (fullpath[0] == ':' || filename[0] == '.')
+	{
+		newpoin = _find_exe_cwd(filename);
 		if (newpoin != NULL)
 			return (newpoin);
 	}
 	index = cwd_inside_PATH(fullpath);
+
 	newpoin = find_exe_Path(filename, index, fullpath);
 	if (newpoin != NULL)
 		return (newpoin);
-	else if (index == 0 && fullpath[_strlen(fullpath) - 1] == ':')
-	{ newpoin = _find_exe_cwd(filename);
-		if (newpoin != NULL)
-			return (newpoin);
-	}
 	return (NULL);
 }
