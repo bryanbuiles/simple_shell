@@ -6,7 +6,7 @@
  */
 char *_which(char *filename)
 {
-	char *newpoin, *fullpath, *ptrPATH;
+	char *newpoin, *fullpath = NULL, *ptrPATH;
 	int index;
 
 	ptrPATH = "PATH";
@@ -24,7 +24,7 @@ char *_which(char *filename)
 			return (newpoin);
 		return (NULL);
 	}
-	if (filename[0] == '.')
+	if (filename[0] == '.' )
 	{ newpoin = _find_exe_cwd(filename);
 		if (newpoin != NULL)
 			return (newpoin);

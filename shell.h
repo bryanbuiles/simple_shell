@@ -10,6 +10,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <limits.h>
+#include <signal.h> 
 
 /**
  * struct builtins - struct that search for the builtin
@@ -59,7 +60,10 @@ int _numlen(int n);
 
 str_p shell_prompt(int count, int exit_);
 void fredom(char **args, char *buffer, char *pathname, int flag);
-int family(char **args, char *buffer, char **av, int count);
+int family(char *pathname, char **args);
+int access_to_family(char **args, char **av, int count);
+
+
 
 char *_find_exe_cwd(char *filename);
 char *find_slash(char *filename);
@@ -69,5 +73,6 @@ char *find_exe_Path(char *filename, int index, char *newpath);
 char *_strchr(char *s, char c);
 void _setenv(char **args, char *line);
 int cwd_inside_PATH(char *fullpathname);
+char *_strtok(char *str, const char *delim);
 
 #endif

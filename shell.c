@@ -26,15 +26,14 @@ int main(int ac, char *av[], char **env)
 			{
 				if (_strcmp(args[0], "exit") == 0)
 				{
-					free(args);
-					free(buffer);
+					free(args), free(buffer);
 					exit(exit_);
 				}
 				else
 				{
 					check = apply_builtins(args, buffer);
 					if (check != 0)
-						exit_ = family(args, buffer, av, count);
+						exit_ = access_to_family(args, av, count);
 				}
 			}
 			free(args);

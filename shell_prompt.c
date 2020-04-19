@@ -17,7 +17,7 @@ str_p shell_prompt(int count, int exit_)
 	if (isatty(STDIN_FILENO))
 	{
 		count++;
-		write(STDOUT_FILENO, "GreatTeam $ ", 13);
+		write(STDOUT_FILENO, "GreatTeam $ ", 12);
 	}
 	else
 		count++;

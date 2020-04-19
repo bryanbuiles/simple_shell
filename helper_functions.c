@@ -43,21 +43,23 @@ void errores(char **args, char **av, int count, int error)
 	if (error == 1)
 	{
 		write(STDERR_FILENO, av[0], _strlen(av[0]));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, str, _strlen(str));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, args[0], _strlen(args[0]));
-		write(STDERR_FILENO, ": not found\n", 13);
+		write(STDERR_FILENO, ": not found\n", 12);
 	}
-	if (error == 2)
+	if (error == 2 || error == 3)
 	{
 		write(STDERR_FILENO, av[0], _strlen(av[0]));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, str, _strlen(str));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 		write(STDERR_FILENO, args[0], _strlen(args[0]));
-		write(STDERR_FILENO, ": ", 3);
+		write(STDERR_FILENO, ": ", 2);
 	}
+	if (error == 3)
+		write(STDERR_FILENO, "Permission denied\n", 18);
 	free(str);
 }
 /**
@@ -100,5 +102,5 @@ int _strcmp(const char *s1, const char *s2)
  */
 void ignore_signal(int signal __attribute__((unused)))
 {
-	write(STDOUT_FILENO, "\nGreatTeam $ ", 14);
+	write(STDOUT_FILENO, "\nGreatTeam $ ", 13);
 }
