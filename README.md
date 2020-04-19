@@ -74,19 +74,26 @@ https://medium.com/@erikaosgue/4a72ef258c3a
 
 This repository contains the following files:
 
-| File               | Description          |
-| ------------------ | -------------------- |
-| shell.c            | Execute the shell    |
-| shell.h            | Header               |
-| functions.c        | Helper functions     |
-| \_which.c          | Find PATH            |
-| \_getenv.c         | Find env variable    |
-| builtins.c         | Builtins functions   |
-| helper_functions.c | Helper functions2    |
-| fredom.c           | free pointers        |
-| family.c           | fork() sys call      |
-| \_itoa.c           | convert a int to str |
-| shell_prompt.c     | Display prompt       |
+| File               | Description               |
+| ------------------ | ------------------------- |
+| shell.c            | Execute the shell         |
+| shell.h            | Header                    |
+| functions.c        | Helper functions          |
+| \_which.c          | Find PATH                 |
+| \_getenv.c         | Find env variable         |
+| builtins.c         | Builtins functions        |
+| helper_functions.c | Helper functions2         |
+| fredom.c           | free pointers             |
+| family.c           | fork() sys call           |
+| \_itoa.c           | convert a int to str      |
+| shell_prompt.c     | Display prompt            |
+| cwd_inside_PATH.c  | Find in CWD               |
+| find_exe_cwd.c     | Find and execute in cwd   |
+| find_exe_cwd.c     | Find in PATH the argument |
+| Path_empty.c       | Check if PATH is empty    |
+| strchr.c           | Locates a charater in str |
+| AUTHORS            | AUTHORS                   |
+| exit_shell.c       | exit builtin              |
 
 ## Authors:
 

@@ -12,6 +12,7 @@ int apply_builtins(char **args, char *line)
 	builtins_t all[] = {
 		/*{"exit", shellexit}, */
 		{"env", envshell},
+		/*{"setenv", _setenv}, */
 		{NULL, NULL}};
 	for (i = 0; all[i].arg != NULL; i++)
 	{

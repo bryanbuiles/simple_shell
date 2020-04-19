@@ -71,8 +71,8 @@ char *PATH_empty(char *filename);
 char *find_exe_Path(char *filename, int index, char *newpath);
 
 char *_strchr(char *s, char c);
+void _setenv(char **args, char *line);
 int cwd_inside_PATH(char *fullpathname);
 char *_strtok(char *str, const char *delim);
-
 
 #endif
