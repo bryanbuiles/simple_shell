@@ -33,7 +33,7 @@ int main(int ac, char *av[], char **env)
 				{
 					check = apply_builtins(args, buffer);
 					if (check != 0)
-						exit_ = access_to_family(args, av, count);
+						exit_ = access_to_family(args, buffer, av, count);
 				}
 			}
 			free(args);

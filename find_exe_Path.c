@@ -3,7 +3,7 @@
  * find_exe_Path - Checks if the file exist in the PATH variable
  * @filename: name of the executable file
  * @index: for checking the current directory at that index compare with token
- * @newpath: its the path value of the env variable usually PATH
+ * @fullpath: its the path value of the env variable usually PATH
  * Return: A pointer with the pathname NULL otherwise
  */
 char *find_exe_Path(char *filename, int index, char *fullpath)
