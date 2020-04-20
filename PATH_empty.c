@@ -8,11 +8,13 @@ char *PATH_empty(char *filename)
 {
 	struct stat st;
 
-	if (stat(filename, &st) == 0)
+	if (filename[0] == '.' || filename[0] == '/')
 	{
-		filename = _strdup(filename);
-		return (filename);
+		if (stat(filename, &st) == 0)
+		{
+			filename = _strdup(filename);
+			return (filename);
+		}
 	}
-	else
-		return (NULL);
+	return (NULL);
 }
