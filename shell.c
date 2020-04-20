@@ -18,10 +18,9 @@ int main(int ac, char *av[], char **env)
 		buf_count = shell_prompt(count, exit_);
 		buffer = buf_count.buffer;
 		count = buf_count.count;
-
 		if (*buffer != '\0')
 		{
-			args = split_line(buffer, " \t\r\a");
+			args = split_line(buffer, " \t");
 			if (args[0] != NULL)
 			{
 				if (_strcmp(args[0], "exit") == 0)
@@ -41,6 +40,6 @@ int main(int ac, char *av[], char **env)
 		free(buffer);
 	} while (flag);
 
-	(void)ac, (void)av, (void)env;
+	(void)ac, (void)env;
 	return (exit_);
 }
