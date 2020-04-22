@@ -20,7 +20,7 @@ char *_strtok(char *str, const char *delim)
 			return (NULL);
 	}
 	/* finds if the first characters are delimeters and avoid them to be tokens */
-	len = strspn(str, delim);
+	len = _strspn(str, delim);
 	str += len;
 	if (*str == '\0')
 	{
@@ -28,7 +28,7 @@ char *_strtok(char *str, const char *delim)
 	}
 	token = str;
 	/* str will be pointing to the first delimeter found */
-	str = strpbrk(token, delim);
+	str = _strpbrk(token, delim);
 	/* if str is not null means there are more strings to be tokenize */
 	if (str != NULL)
 	{
