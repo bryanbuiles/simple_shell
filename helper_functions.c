@@ -8,7 +8,7 @@
 char **split_line(char *line, char *delimiter)
 {
 	size_t buffer_size = 200;
-	char **alltokens, *token;
+	char **alltokens, *token = NULL;
 	int i;
 
 	alltokens = malloc(sizeof(char *) * buffer_size);
@@ -17,11 +17,11 @@ char **split_line(char *line, char *delimiter)
 		perror("Error");
 		return (NULL);
 	}
-	token = strtok(line, delimiter);
+	token = _strtok(line, delimiter);
 	for (i = 0; token; i++)
 	{
 		alltokens[i] = token;
-		token = strtok(NULL, delimiter);
+		token = _strtok(NULL, delimiter);
 	}
 	alltokens[i] = NULL;
 	return (alltokens);

@@ -74,5 +74,7 @@ char *_strchr(char *s, char c);
 void _setenv(char **args, char *line);
 int cwd_inside_PATH(char *fullpathname);
 char *_strtok(char *str, const char *delim);
+unsigned int _strspn(char *s, const char *accept);
+char *_strpbrk(char *s, const char *accept);
 
 #endif
