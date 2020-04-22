@@ -41,5 +41,5 @@ int main(int ac, char *av[], char **env)
 	} while (flag);
 
 	(void)ac, (void)env;
-	return (exit_);
+	return (0);
 }

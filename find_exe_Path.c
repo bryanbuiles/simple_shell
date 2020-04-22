@@ -13,12 +13,13 @@ char *find_exe_Path(char *filename, int index, char *fullpath)
 	int size = 0, Dir = 0;
 
 	newpath = _strdup(fullpath);
-	token = strtok(newpath, ":");
+	token = _strtok(newpath, ":");
 	while (token)
 	{
 		Dir += 1;
-		if (Dir == (index - 1))
-		{ newpoin = _find_exe_cwd(filename);
+		if (Dir == index)
+		{
+			newpoin = _find_exe_cwd(filename);
 			if (newpoin != NULL)
 				return (newpoin);
 		}
@@ -35,7 +36,7 @@ char *find_exe_Path(char *filename, int index, char *fullpath)
 			return (newpoin);
 		}
 		free(newpoin);
-		token = strtok(NULL, ":");
+		token = _strtok(NULL, ":");
 		if (token == NULL)
 			break;
 	}

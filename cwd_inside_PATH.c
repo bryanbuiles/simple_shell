@@ -4,19 +4,18 @@
  * @fullpathname: value of the variable usually the value of PATH
  * Return: the index of the coincidence of a double colon as current dir
  */
-int cwd_inside_PATH(char *fullpathname)
+int cwd_inside_PATH(char *fullpath)
 {
-	int i, index = 0, k = 0;
+	int i, index = 0, Directory = 0;
 
-	for (i = 1; fullpathname[i]; i++)
+	for (i = 1; fullpath[i]; i++)
 	{
-		if (fullpathname[i] == ':')
+		if (fullpath[i] == ':')
 		{
-			k += 1;
-			if (fullpathname[i + 1] == ':')
+			Directory += 1;
+			if (fullpath[i + 1] == ':')
 			{
-				index = k;
-				index += 1;
+				index = Directory + 1;
 				break;
 			}
 		}

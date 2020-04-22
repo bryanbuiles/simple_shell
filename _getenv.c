@@ -19,7 +19,7 @@ char *_getenv(const char *name)
 		/* copy the string in order to use strtok so the original doesn't change*/
 		nameVar1 = _strdup(environ[i]);
 		/*strtok set all the delim into nulls, and return a pointer*/
-		nameVar = strtok(nameVar1, "=");
+		nameVar = _strtok(nameVar1, "=");
 
 		if ((_strcmp(nameVar, name) == 0))
 		{
